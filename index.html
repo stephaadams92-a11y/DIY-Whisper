@@ -121,5 +121,13 @@
 
     <footer>Created by Grain & Glow — Stephanie Adams ©2026</footer>
 
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+      .then(reg => console.log('SW registered:', reg))
+      .catch(err => console.error('SW registration failed:', err));
+  }
+</script>
+
 </body>
 </html>
