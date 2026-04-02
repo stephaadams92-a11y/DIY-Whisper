@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plumbing – What Do I Need?</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffd89b, #6dd5fa);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 30px;
+            font-size: 26px;
+            color: #333;
+        }
+
+        #resultBox {
+            background: rgba(255,255,255,0.85);
+            margin: 20px auto;
+            padding: 15px;
+            width: 80%;
+            max-width: 350px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: left;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .btn {
+            background-color: #ffffff;
+            color: #333;
+            padding: 12px 18px;
+            width: 60%;
+            max-width: 260px;
+            border-radius: 12px;
+            border: none;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        footer {
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #444;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>What Do I Need?</h1>
+
+    <div id="resultBox">
+        Loading…
+    </div>
+
+    <div class="button-container">
+        <button class="btn" id="howToBtn">How To</button>
+        <button class="btn" onclick="location.href='plumbing.html'">Back</button>
+        <button class="btn" onclick="location.href='notes.html'">Notes</button>
+        <button class="btn" onclick="location.href='menu.html'">Menu</button>
+        <button class="btn" onclick="location.href='index.html'">Home</button>
+    </div>
+
+    <footer>
+        Only continue if you feel confident and capable.
+    </footer>
+
+<script>
+
+/* ============================================================
+   PLUMBING DATA — THIS IS THE ONLY SECTION YOU EVER EDIT
+   ============================================================ */
+
+const plumbingData = {
+
+    unblock: {
+        name: "Unblocking Sinks, Baths & Basins",
+        list: [
+            "Plunger",
+            "Drain snake",
+            "Bucket",
+            "Rubber gloves",
+            "Old towels",
+            "Enzyme drain cleaner (optional)",
+            "Screwdriver (for trap removal)"
+        ]
+    },
+
+    slowdrains: {
+        name: "Fixing Slow Drains",
+        list: [
+            "Plunger",
+            "Drain snake",
+            "Bucket",
+            "Rubber gloves",
+            "Cleaning brush",
+            "Screwdriver (for trap removal)"
+        ]
+    },
+
+    traps: {
+        name: "Leaking Traps & Waste Pipes",
+        list: [
+            "Replacement washers",
+            "Replacement O‑rings",
+            "PTFE tape",
+            "Bucket",
+            "Rubber gloves",
+            "Adjustable wrench (optional)",
+            "Cloths"
+        ]
+    },
+
+    leakingtaps: {
+        name: "Fixing Leaking Taps",
+        list: [
+            "Replacement tap washer or cartridge",
+            "Screwdrivers",
+            "Allen keys",
+            "Adjustable wrench",
+            "PTFE tape",
+            "Cloths"
+        ]
+    },
+
+    replacetaps: {
+        name: "Replacing Taps",
+        list: [
+            "New tap (like‑for‑like)",
+            "Basin wrench",
+            "Adjustable wrench",
+            "PTFE tape",
+            "Bucket",
+            "Cloths",
+            "Screwdrivers"
+        ]
+    },
+
+    toiletrepairs: {
+        name: "Toilet Repairs",
+        list: [
+            "Replacement fill valve",
+            "Replacement flush valve",
+            "Screwdrivers",
+            "Adjustable wrench",
+            "Bucket",
+            "Rubber gloves",
+            "Cloths"
+        ]
+    },
+
+    toiletseat: {
+        name: "Toilet Seat Replacement",
+        list: [
+            "New toilet seat",
+            "Screwdrivers",
+            "Adjustable wrench",
+            "Cloths"
+        ]
+    },
+
+    bleeding: {
+        name: "Radiator Bleeding",
+        list: [
+            "Radiator key",
+            "Cloths",
+            "Small container (for drips)"
+        ]
+    },
+
+    radvalves: {
+        name: "Radiator Valve Replacement",
+        list: [
+            "Replacement TRV or lockshield valve",
+            "Adjustable wrenches",
+            "PTFE tape",
+            "Towels",
+            "Bucket"
+        ]
+    },
+
+    appliances: {
+        name: "Washing Machines & Dishwashers",
+        list: [
+            "Inlet hose (if replacing)",
+            "Waste hose (if replacing)",
+            "Hose washers",
+            "Adjustable wrench",
+            "Spirit level",
+            "Cloths"
+        ]
+    },
+
+    sealing: {
+        name: "Sealing & Waterproofing",
+        list: [
+            "Silicone sealant",
+            "Sealant gun",
+            "Masking tape",
+            "Cloths",
+            "Cleaning wipes"
+        ]
+    },
+
+    nosuitable: {
+        name: "Not Suitable for Plumbing",
+        list: [
+            "No materials required — task must not be attempted"
+        ]
+    }
+
+};
+
+/* ============================================================
+   END OF EDITABLE SECTION
+   ============================================================ */
+
+
+/* ===== Logic to read ?task= and display the correct list ===== */
+
+const params = new URLSearchParams(window.location.search);
+const task = params.get("task");
+
+const box = document.getElementById("resultBox");
+const howToBtn = document.getElementById("howToBtn");
+
+if (plumbingData[task]) {
+    const item = plumbingData[task];
+    let html = `<strong>${item.name}</strong><br><br>`;
+    html += "<ul>";
+    item.list.forEach(i => html += `<li>${i}</li>`);
+    html += "</ul>";
+    box.innerHTML = html;
+
+    howToBtn.onclick = () => {
+        location.href = `howto.html?task=${task}`;
+    };
+
+} else {
+    box.innerHTML = "No information found for this task.";
+    howToBtn.style.display = "none";
+}
+
+</script>
+
+</body>
+</html>

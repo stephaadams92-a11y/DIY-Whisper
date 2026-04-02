@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIY Whisper</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffd89b, #6dd5fa);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 30px;
+            font-size: 30px;
+            color: #333;
+        }
+
+        #welcomeBox {
+            background: rgba(255,255,255,0.9);
+            margin: 20px auto;
+            padding: 20px;
+            width: 85%;
+            max-width: 420px;
+            border-radius: 16px;
+            border: 3px solid #ffffff;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.25);
+            text-align: left;
+            font-size: 15px;
+            line-height: 1.5;
+            margin-bottom: 40px; /* FIXED SPACING */
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin-top: 12px;
+            font-size: 16px;
+        }
+
+        .button-container {
+            margin-top: auto;
+            margin-bottom: 25px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            align-items: center;
+            padding-bottom: 20px; /* FIXED SQUASHING */
+        }
+
+        .btn {
+            background-color: #ffffff;
+            color: #333;
+            padding: 14px 20px;
+            width: 60%;
+            max-width: 260px;
+            border-radius: 12px;
+            border: none;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        footer {
+            font-size: 13px;
+            color: #333;
+            opacity: 0.8;
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>DIY Whisper</h1>
+
+    <div id="welcomeBox">
+        <div class="section-title">Welcome</div>
+        <p>
+            DIY Whisper is your calm, confidence‑building guide for everyday DIY tasks.
+            Choose a trade, pick your task, and the app will tell you:
+        </p>
+
+        <ul>
+            <li>Whether you can safely do it</li>
+            <li>What you’ll need</li>
+            <li>How to do it step‑by‑step</li>
+            <li>Warnings, tips, and tricks</li>
+        </ul>
+
+        <div class="section-title">How to Use the App</div>
+        <ul>
+            <li>Tap <strong>Menu</strong> to choose a trade</li>
+            <li>Select your task</li>
+            <li>Check the “Can I?” and “Needs” pages</li>
+            <li>Tap <strong>How To</strong> for clear instructions</li>
+            <li>Use <strong>Your Notes</strong> to save anything important</li>
+        </ul>
+
+        <div class="section-title">Important Safety Notice</div>
+        <p>
+            This guide offers general DIY advice. Your safety and decisions are your responsibility.
+            Only continue if you feel confident and capable.
+        </p>
+    </div>
+
+    <div class="button-container">
+        <button class="btn" onclick="location.href='menu.html'">Menu</button>
+        <button class="btn" onclick="location.href='notes.html'">Your Notes</button>
+    </div>
+
+    <footer>Created by Grain & Glow — Stephanie Adams ©2026</footer>
+
+</body>
+</html>

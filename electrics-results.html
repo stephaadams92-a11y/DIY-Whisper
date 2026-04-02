@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electrics – What Do I Need?</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffd89b, #6dd5fa);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 30px;
+            font-size: 26px;
+            color: #333;
+        }
+
+        #resultBox {
+            background: rgba(255,255,255,0.85);
+            margin: 20px auto;
+            padding: 15px;
+            width: 80%;
+            max-width: 350px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: left;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .btn {
+            background-color: #ffffff;
+            color: #333;
+            padding: 12px 18px;
+            width: 60%;
+            max-width: 260px;
+            border-radius: 12px;
+            border: none;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        footer {
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #444;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>What Do I Need?</h1>
+
+    <div id="resultBox">
+        Loading…
+    </div>
+
+    <div class="button-container">
+        <button class="btn" id="howToBtn">How To</button>
+        <button class="btn" onclick="location.href='electrics.html'">Back</button>
+        <button class="btn" onclick="location.href='notes.html'">Notes</button>
+        <button class="btn" onclick="location.href='menu.html'">Menu</button>
+        <button class="btn" onclick="location.href='index.html'">Home</button>
+    </div>
+
+    <footer>
+        Only continue if you feel confident and capable.
+    </footer>
+
+<script>
+
+/* ============================================================
+   ELECTRICS DATA — THIS IS THE ONLY SECTION YOU EVER EDIT
+   ============================================================ */
+
+const electricsData = {
+
+    bulbs: {
+        name: "Changing Light Bulbs",
+        list: [
+            "Replacement bulb (LED recommended)",
+            "Step stool or ladder",
+            "Cloths (for grip)",
+            "Gloves (optional)"
+        ]
+    },
+
+    lightfittings: {
+        name: "Replacing Light Fittings (Like‑for‑Like)",
+        list: [
+            "New light fitting",
+            "Screwdrivers",
+            "Voltage tester (non‑contact)",
+            "Wire strippers",
+            "Screws & wall plugs (if needed)",
+            "Ladder"
+        ]
+    },
+
+    switches: {
+        name: "Replacing Switches (Like‑for‑Like)",
+        list: [
+            "New switch (same type only)",
+            "Screwdrivers",
+            "Voltage tester (non‑contact)",
+            "Wire strippers",
+            "Small pliers",
+            "Fixing screws"
+        ]
+    },
+
+    sockets: {
+        name: "Replacing Sockets (Like‑for‑Like)",
+        list: [
+            "New socket (same type only)",
+            "Screwdrivers",
+            "Voltage tester (non‑contact)",
+            "Wire strippers",
+            "Small pliers",
+            "Fixing screws"
+        ]
+    },
+
+    extractorfans: {
+        name: "Extractor Fans (Like‑for‑Like)",
+        list: [
+            "Replacement fan (same wiring type)",
+            "Screwdrivers",
+            "Voltage tester (non‑contact)",
+            "Wall plugs & screws",
+            "Sealant (optional)"
+        ]
+    },
+
+    doorbells: {
+        name: "Doorbells & Chimes",
+        list: [
+            "Replacement chime or doorbell",
+            "Screwdrivers",
+            "Batteries (if wireless)",
+            "Fixing screws",
+            "Adhesive pads (optional)"
+        ]
+    },
+
+    pluginovens: {
+        name: "Plug‑In Ovens & Hobs",
+        list: [
+            "Replacement plug‑in oven or hob",
+            "Screwdrivers",
+            "Heat‑resistant gloves (optional)",
+            "Cable ties (for tidy routing)"
+        ]
+    },
+
+    troubleshooting: {
+        name: "Basic Troubleshooting",
+        list: [
+            "Spare fuses (13A, 5A, 3A)",
+            "Screwdrivers",
+            "Voltage tester (non‑contact)",
+            "Torch",
+            "Cloths"
+        ]
+    },
+
+    cablemanagement: {
+        name: "Cable Management",
+        list: [
+            "Trunking",
+            "Cable clips",
+            "Adhesive pads",
+            "Small saw or snips",
+            "Screwdrivers"
+        ]
+    },
+
+    nosuitable: {
+        name: "Not Suitable for Electrics",
+        list: [
+            "No materials required — task must not be attempted"
+        ]
+    }
+
+};
+
+/* ============================================================
+   END OF EDITABLE SECTION
+   ============================================================ */
+
+
+/* ===== Logic to read ?task= and display the correct list ===== */
+
+const params = new URLSearchParams(window.location.search);
+const task = params.get("task");
+
+const box = document.getElementById("resultBox");
+const howToBtn = document.getElementById("howToBtn");
+
+if (electricsData[task]) {
+    const item = electricsData[task];
+    let html = `<strong>${item.name}</strong><br><br>`;
+    html += "<ul>";
+    item.list.forEach(i => html += `<li>${i}</li>`);
+    html += "</ul>";
+    box.innerHTML = html;
+
+    howToBtn.onclick = () => {
+        location.href = `howto.html?task=${task}`;
+    };
+
+} else {
+    box.innerHTML = "No information found for this task.";
+    howToBtn.style.display = "none";
+}
+
+</script>
+
+</body>
+</html>

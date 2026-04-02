@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flooring Tasks</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffd89b, #6dd5fa);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 35px;
+            font-size: 28px;
+            color: #333;
+        }
+
+        /* Two-column grid for flooring tasks */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            width: 90%;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+
+        /* Bottom navigation row */
+        .nav-row {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            margin-bottom: 20px;
+        }
+
+        /* Base button style */
+        .btn {
+            padding: 14px 10px;
+            border-radius: 12px;
+            border: none;
+            font-size: 16px;
+            color: #333;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        /* Individual colours for flooring tasks */
+        .laminate { background-color: #ffefd5; }
+        .vinylsheet { background-color: #d0f0c0; }
+        .lvtclick { background-color: #ffe4b5; }
+        .lvtglue { background-color: #e6e6fa; }
+        .carpet { background-color: #f5deb3; }
+        .carpettiles { background-color: #fffacd; }
+        .engineered { background-color: #c1f0f6; }
+        .solidwood { background-color: #d8bfd8; }
+        .floortiling { background-color: #fafad2; }
+        .subfloor { background-color: #e0cda9; }
+        .nosuitable { background-color: #ffd7ba; }
+
+        /* Navigation button colours */
+        .nav-btn { background-color: #ffffff; width: 30%; }
+
+        footer {
+            margin-top: auto;
+            margin-bottom: 15px;
+            font-size: 13px;
+            color: #333;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Flooring Tasks</h1>
+
+    <div class="grid">
+        <button class="btn laminate" onclick="location.href='flooring-results.html?task=laminate'">Laminate Flooring</button>
+        <button class="btn vinylsheet" onclick="location.href='flooring-results.html?task=vinylsheet'">Vinyl Sheet Flooring</button>
+
+        <button class="btn lvtclick" onclick="location.href='flooring-results.html?task=lvtclick'">LVT Click</button>
+        <button class="btn lvtglue" onclick="location.href='flooring-results.html?task=lvtglue'">LVT Glue‑Down</button>
+
+        <button class="btn carpet" onclick="location.href='flooring-results.html?task=carpet'">Carpet</button>
+        <button class="btn carpettiles" onclick="location.href='flooring-results.html?task=carpettiles'">Carpet Tiles</button>
+
+        <button class="btn engineered" onclick="location.href='flooring-results.html?task=engineered'">Engineered Wood</button>
+        <button class="btn solidwood" onclick="location.href='flooring-results.html?task=solidwood'">Solid Wood</button>
+
+        <button class="btn floortiling" onclick="location.href='flooring-results.html?task=floortiling'">Floor Tiling</button>
+        <button class="btn subfloor" onclick="location.href='flooring-results.html?task=subfloor'">Subfloor Preparation</button>
+
+        <button class="btn nosuitable" onclick="location.href='flooring-results.html?task=nosuitable'">Not Suitable</button>
+    </div>
+
+    <!-- Bottom navigation row -->
+    <div class="nav-row">
+        <button class="btn nav-btn" onclick="location.href='index.html'">Home</button>
+        <button class="btn nav-btn" onclick="location.href='menu.html'">Menu</button>
+        <button class="btn nav-btn" onclick="location.href='notes.html'">Notes</button>
+    </div>
+
+    <footer>Only continue if you feel confident and capable.</footer>
+
+</body>
+</html>

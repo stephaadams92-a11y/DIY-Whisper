@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flooring – What Do I Need?</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffd89b, #6dd5fa);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 30px;
+            font-size: 26px;
+            color: #333;
+        }
+
+        #resultBox {
+            background: rgba(255,255,255,0.85);
+            margin: 20px auto;
+            padding: 15px;
+            width: 80%;
+            max-width: 350px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: left;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .btn {
+            background-color: #ffffff;
+            color: #333;
+            padding: 12px 18px;
+            width: 60%;
+            max-width: 260px;
+            border-radius: 12px;
+            border: none;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        footer {
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #444;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>What Do I Need?</h1>
+
+    <div id="resultBox">
+        Loading…
+    </div>
+
+    <div class="button-container">
+        <button class="btn" id="howToBtn">How To</button>
+        <button class="btn" onclick="location.href='flooring.html'">Back</button>
+        <button class="btn" onclick="location.href='notes.html'">Notes</button>
+        <button class="btn" onclick="location.href='menu.html'">Menu</button>
+        <button class="btn" onclick="location.href='index.html'">Home</button>
+    </div>
+
+    <footer>
+        Only continue if you feel confident and capable.
+    </footer>
+
+<script>
+
+/* ============================================================
+   FLOORING DATA — THIS IS THE ONLY SECTION YOU EVER EDIT
+   ============================================================ */
+
+const flooringData = {
+
+    laminate: {
+        name: "Laminate Flooring",
+        list: [
+            "Laminate boards",
+            "Underlay",
+            "Moisture barrier (if needed)",
+            "Spacers",
+            "Pull bar",
+            "Tapping block",
+            "Jigsaw or laminate cutter",
+            "Door trim/thresholds",
+            "Tape measure",
+            "Pencil",
+            "Knee pads"
+        ]
+    },
+
+    vinylsheet: {
+        name: "Vinyl Sheet Flooring",
+        list: [
+            "Vinyl sheet roll",
+            "Adhesive (if not loose‑lay)",
+            "Stanley knife",
+            "Straight edge",
+            "Smoothing tool",
+            "Paper template (for toilets/pipes)",
+            "Tape measure",
+            "Cloths"
+        ]
+    },
+
+    lvtclick: {
+        name: "LVT Click",
+        list: [
+            "LVT click planks/tiles",
+            "Underlay (LVT‑rated)",
+            "Spacers",
+            "Stanley knife",
+            "Straight edge",
+            "Rubber mallet",
+            "Tape measure",
+            "Door trims"
+        ]
+    },
+
+    lvtglue: {
+        name: "LVT Glue‑Down",
+        list: [
+            "LVT glue‑down tiles",
+            "Pressure‑sensitive adhesive",
+            "Notched trowel",
+            "Floor roller",
+            "Stanley knife",
+            "Straight edge",
+            "Tape measure",
+            "Cloths"
+        ]
+    },
+
+    carpet: {
+        name: "Carpet",
+        list: [
+            "Carpet roll",
+            "Underlay",
+            "Carpet grippers",
+            "Knee kicker",
+            "Carpet stretcher (optional)",
+            "Stanley knife",
+            "Tape measure",
+            "Door trims"
+        ]
+    },
+
+    carpettiles: {
+        name: "Carpet Tiles",
+        list: [
+            "Carpet tiles",
+            "Peel‑and‑stick adhesive (if needed)",
+            "Stanley knife",
+            "Straight edge",
+            "Tape measure",
+            "Chalk line"
+        ]
+    },
+
+    engineered: {
+        name: "Engineered Wood",
+        list: [
+            "Engineered wood boards",
+            "Underlay",
+            "Moisture barrier",
+            "Spacers",
+            "Pull bar",
+            "Tapping block",
+            "Saw",
+            "Tape measure",
+            "Door trims"
+        ]
+    },
+
+    solidwood: {
+        name: "Solid Wood",
+        list: [
+            "Solid wood boards",
+            "Moisture barrier",
+            "Adhesive or nails (depending on method)",
+            "Spacers",
+            "Saw",
+            "Tape measure",
+            "Door trims",
+            "Acclimatisation time (not a tool, but essential)"
+        ]
+    },
+
+    floortiling: {
+        name: "Floor Tiling",
+        list: [
+            "Floor tiles",
+            "Flexible powdered adhesive",
+            "Tile spacers",
+            "Tile cutter or wet saw",
+            "Notched trowel",
+            "Flexible grout",
+            "Grout float",
+            "Sponge & bucket",
+            "Knee pads"
+        ]
+    },
+
+    subfloor: {
+        name: "Subfloor Preparation",
+        list: [
+            "Levelling compound",
+            "Primer",
+            "Trowel",
+            "Sanding block",
+            "Vacuum",
+            "Moisture meter",
+            "Straight edge"
+        ]
+    },
+
+    nosuitable: {
+        name: "Not Suitable for Flooring",
+        list: [
+            "No materials required — surface must not be floored"
+        ]
+    }
+
+};
+
+/* ============================================================
+   END OF EDITABLE SECTION
+   ============================================================ */
+
+
+/* ===== Logic to read ?task= and display the correct list ===== */
+
+const params = new URLSearchParams(window.location.search);
+const task = params.get("task");
+
+const box = document.getElementById("resultBox");
+const howToBtn = document.getElementById("howToBtn");
+
+if (flooringData[task]) {
+    const item = flooringData[task];
+    let html = `<strong>${item.name}</strong><br><br>`;
+    html += "<ul>";
+    item.list.forEach(i => html += `<li>${i}</li>`);
+    html += "</ul>";
+    box.innerHTML = html;
+
+    howToBtn.onclick = () => {
+        location.href = `howto.html?task=${task}`;
+    };
+
+} else {
+    box.innerHTML = "No information found for this task.";
+    howToBtn.style.display = "none";
+}
+
+</script>
+
+</body>
+</html>

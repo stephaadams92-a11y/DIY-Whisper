@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Around the House – What Do I Need?</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffd89b, #6dd5fa);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 30px;
+            font-size: 26px;
+            color: #333;
+        }
+
+        #resultBox {
+            background: rgba(255,255,255,0.85);
+            margin: 20px auto;
+            padding: 15px;
+            width: 80%;
+            max-width: 350px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: left;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .btn {
+            background-color: #ffffff;
+            color: #333;
+            padding: 12px 18px;
+            width: 60%;
+            max-width: 260px;
+            border-radius: 12px;
+            border: none;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        footer {
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #444;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>What Do I Need?</h1>
+
+    <div id="resultBox">
+        Loading…
+    </div>
+
+    <div class="button-container">
+        <button class="btn" id="howToBtn">How To</button>
+        <button class="btn" onclick="location.href='around-the-house.html'">Back</button>
+        <button class="btn" onclick="location.href='notes.html'">Notes</button>
+        <button class="btn" onclick="location.href='menu.html'">Menu</button>
+        <button class="btn" onclick="location.href='index.html'">Home</button>
+    </div>
+
+    <footer>
+        Only continue if you feel confident and capable.
+    </footer>
+
+<script>
+
+/* ============================================================
+   AROUND THE HOUSE DATA — THIS IS THE ONLY SECTION YOU EVER EDIT
+   ============================================================ */
+
+const houseData = {
+
+    shelves: {
+        name: "Putting Up Shelves",
+        list: [
+            "Shelf & brackets / floating shelf kit",
+            "Screws",
+            "Wall plugs (masonry or plasterboard)",
+            "Drill & bits",
+            "Spirit level",
+            "Tape measure",
+            "Pencil"
+        ]
+    },
+
+    pictures: {
+        name: "Hanging Pictures & Mirrors",
+        list: [
+            "Picture hooks or wall plugs",
+            "Screws",
+            "Hammer or drill",
+            "Spirit level",
+            "Tape measure",
+            "Pencil",
+            "Wire/string (if needed)"
+        ]
+    },
+
+    curtains: {
+        name: "Curtain Poles & Blinds",
+        list: [
+            "Curtain pole or blind",
+            "Brackets",
+            "Screws & wall plugs",
+            "Drill & bits",
+            "Spirit level",
+            "Tape measure",
+            "Pencil"
+        ]
+    },
+
+    flatpack: {
+        name: "Flat Pack Furniture",
+        list: [
+            "Screwdrivers",
+            "Allen keys",
+            "Hammer (rubber mallet optional)",
+            "Fixings (included in pack)",
+            "Anti‑tip brackets",
+            "Spirit level"
+        ]
+    },
+
+    hinges: {
+        name: "WD‑40 & Minor Hinges",
+        list: [
+            "WD‑40 or silicone spray",
+            "Screwdrivers",
+            "Cloths",
+            "Small pliers (optional)"
+        ]
+    },
+
+    tricklevents: {
+        name: "Changing Trickle Vents",
+        list: [
+            "Replacement trickle vent",
+            "Screwdrivers",
+            "Tape measure",
+            "Cloths"
+        ]
+    },
+
+    measuring: {
+        name: "Measuring Up",
+        list: [
+            "Tape measure",
+            "Pencil",
+            "Notepad",
+            "Spirit level",
+            "Laser measure (optional)"
+        ]
+    },
+
+    rails: {
+        name: "Rails & Hooks",
+        list: [
+            "Rail or hook set",
+            "Screws",
+            "Wall plugs",
+            "Drill & bits",
+            "Spirit level",
+            "Tape measure",
+            "Pencil"
+        ]
+    },
+
+    holes: {
+        name: "Filling Tiny Holes",
+        list: [
+            "Ready‑mixed filler",
+            "Filling knife",
+            "Sandpaper",
+            "Cloths"
+        ]
+    },
+
+    nosuitable: {
+        name: "Not Suitable for Around the House",
+        list: [
+            "No materials required — task must not be attempted"
+        ]
+    }
+
+};
+
+/* ============================================================
+   END OF EDITABLE SECTION
+   ============================================================ */
+
+
+/* ===== Logic to read ?task= and display the correct list ===== */
+
+const params = new URLSearchParams(window.location.search);
+const task = params.get("task");
+
+const box = document.getElementById("resultBox");
+const howToBtn = document.getElementById("howToBtn");
+
+if (houseData[task]) {
+    const item = houseData[task];
+    let html = `<strong>${item.name}</strong><br><br>`;
+    html += "<ul>";
+    item.list.forEach(i => html += `<li>${i}</li>`);
+    html += "</ul>";
+    box.innerHTML = html;
+
+    howToBtn.onclick = () => {
+    location.href = `howto.html?task=${task}`;
+}
+
+} else {
+    box.innerHTML = "No information found for this task.";
+    howToBtn.style.display = "none";
+}
+
+</script>
+
+</body>
+</html>

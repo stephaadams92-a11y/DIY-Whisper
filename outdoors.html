@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outdoors Tasks</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffd89b, #6dd5fa);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 40px;
+            font-size: 28px;
+            color: #333;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .btn {
+            background-color: #ffffff;
+            color: #333;
+            padding: 14px 20px;
+            width: 60%;
+            max-width: 260px;
+            border-radius: 12px;
+            border: none;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        .nav-row {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            margin-bottom: 20px;
+        }
+
+        .nav-btn { background-color: #ffffff; width: 30%; max-width: 120px; }
+
+        footer {
+            margin-top: auto;
+            margin-bottom: 15px;
+            font-size: 13px;
+            color: #444;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Outdoors</h1>
+
+    <div class="button-container">
+        <button class="btn" onclick="location.href='outdoors-results.html?task=decking'">Decking (Full Build)</button>
+        <button class="btn" onclick="location.href='outdoors-results.html?task=summerhouse'">Summer House / Shed Build</button>
+        <button class="btn" onclick="location.href='outdoors-results.html?task=slabbing'">Slabbing / Paving</button>
+        <button class="btn" onclick="location.href='outdoors-results.html?task=concrete'">Concrete Work</button>
+        <button class="btn" onclick="location.href='outdoors-results.html?task=artificialgrass'">Artificial Grass</button>
+        <button class="btn" onclick="location.href='outdoors-results.html?task=fencing'">Fencing</button>
+        <button class="btn" onclick="location.href='outdoors-results.html?task=gates'">Gate Builds</button>
+        <button class="btn" onclick="location.href='outdoors-results.html?task=pointing'">Pointing & Brickwork Repairs</button>
+        <button class="btn" onclick="location.href='outdoors-results.html?task=painting'">Painting Outdoors</button>
+        <button class="btn" onclick="location.href='outdoors-results.html?task=roofrepairs'">Roofing Repairs (Minor Only)</button>
+        <button class="btn" onclick="location.href='outdoors-results.html?task=gutters'">Gutter Cleaning & Minor Fixes</button>
+        <button class="btn" onclick="location.href='outdoors-results.html?task=nosuitable'">Not Suitable for Outdoors</button>
+    </div>
+
+    <div class="nav-row">
+        <button class="btn nav-btn" onclick="location.href='index.html'">Home</button>
+        <button class="btn nav-btn" onclick="location.href='menu.html'">Menu</button>
+        <button class="btn nav-btn" onclick="location.href='notes.html'">Notes</button>
+    </div>
+
+    <footer>
+        Only continue if you feel confident and capable.
+    </footer>
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Notes</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #ffd89b, #6dd5fa);
+        text-align: center;
+        overflow-y: auto;
+    }
+
+    h1 {
+        margin-top: 25px;
+        font-size: 28px;
+        color: #333;
+    }
+
+    .btn {
+        background-color: #ffffff;
+        color: #333;
+        padding: 12px 18px;
+        width: 60%;
+        max-width: 260px;
+        border-radius: 12px;
+        border: none;
+        font-size: 16px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        cursor: pointer;
+        margin: 10px auto;
+    }
+
+    .notes-grid {
+        width: 90%;
+        max-width: 500px;
+        margin: 20px auto;
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
+    .note-card {
+        background: rgba(255,255,255,0.9);
+        padding: 12px;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        text-align: left;
+    }
+
+    .note-card textarea {
+        width: 100%;
+        border: none;
+        background: transparent;
+        resize: none;
+        font-size: 15px;
+        outline: none;
+        height: 80px;
+    }
+
+    .note-buttons {
+        display: flex;
+        justify-content: flex-end;
+        margin-top: 6px;
+    }
+
+    .small-btn {
+        background: #fff;
+        border: none;
+        padding: 6px 10px;
+        border-radius: 8px;
+        font-size: 13px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        cursor: pointer;
+    }
+</style>
+</head>
+
+<body>
+
+<h1>Notes</h1>
+
+<button class="btn" onclick="addNote()">Add Note</button>
+
+<div id="notesGrid" class="notes-grid"></div>
+
+<script>
+let notes = JSON.parse(localStorage.getItem("notes") || "[]");
+
+function saveNotes() {
+    localStorage.setItem("notes", JSON.stringify(notes));
+}
+
+function renderNotes() {
+    const grid = document.getElementById("notesGrid");
+    grid.innerHTML = "";
+
+    notes.forEach((text, index) => {
+        const card = document.createElement("div");
+        card.className = "note-card";
+
+        card.innerHTML = `
+            <textarea oninput="updateNote(${index}, this.value)">${text}</textarea>
+            <div class="note-buttons">
+                <button class="small-btn" onclick="deleteNote(${index})">Delete</button>
+            </div>
+        `;
+
+        grid.appendChild(card);
+    });
+}
+
+function addNote() {
+    notes.push("");
+    saveNotes();
+    renderNotes();
+}
+
+function updateNote(index, value) {
+    notes[index] = value;
+    saveNotes();
+}
+
+function deleteNote(index) {
+    notes.splice(index, 1);
+    saveNotes();
+    renderNotes();
+}
+
+renderNotes();
+</script>
+
+</body>
+</html>

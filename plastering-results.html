@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plastering – What Do I Need?</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffd89b, #6dd5fa);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 30px;
+            font-size: 26px;
+            color: #333;
+        }
+
+        #resultBox {
+            background: rgba(255,255,255,0.85);
+            margin: 20px auto;
+            padding: 15px;
+            width: 80%;
+            max-width: 350px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: left;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .btn {
+            background-color: #ffffff;
+            color: #333;
+            padding: 12px 18px;
+            width: 60%;
+            max-width: 260px;
+            border-radius: 12px;
+            border: none;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        footer {
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #444;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>What Do I Need?</h1>
+
+    <div id="resultBox">
+        Loading…
+    </div>
+
+    <div class="button-container">
+        <button class="btn" id="howToBtn">How To</button>
+        <button class="btn" onclick="location.href='plastering.html'">Back</button>
+        <button class="btn" onclick="location.href='notes.html'">Notes</button>
+        <button class="btn" onclick="location.href='menu.html'">Menu</button>
+        <button class="btn" onclick="location.href='index.html'">Home</button>
+    </div>
+
+    <footer>
+        Only continue if you feel confident and capable.
+    </footer>
+
+<script>
+
+/* ============================================================
+   PLASTERING DATA — THIS IS THE ONLY SECTION YOU EVER EDIT
+   ============================================================ */
+
+const plasteringData = {
+
+    smallrepairs: {
+        name: "Small Filler Repairs",
+        list: [
+            "Ready-mixed filler",
+            "Flexible filler (for cracks)",
+            "Caulk (for gaps, not cracks)",
+            "Filling knife",
+            "Sandpaper (120–180 grit)",
+            "Dust brush",
+            "Cloths"
+        ]
+    },
+
+    mediumrepairs: {
+        name: "Medium Repairs",
+        list: [
+            "Powder filler or patching plaster",
+            "Mesh tape",
+            "Filling knives",
+            "Sandpaper",
+            "Dust sheets",
+            "Spirit level (to check flatness)"
+        ]
+    },
+
+    largerepairs: {
+        name: "Large Repairs",
+        list: [
+            "Bonding coat plaster",
+            "Multi-finish plaster",
+            "Mesh tape",
+            "Plastering trowel",
+            "Hawk",
+            "Straight edge",
+            "Buckets",
+            "Mixing paddle"
+        ]
+    },
+
+    fullskim: {
+        name: "Full Skim Coat",
+        list: [
+            "Multi-finish plaster",
+            "Plastering trowel",
+            "Hawk",
+            "Water brush",
+            "Buckets",
+            "Mixing paddle",
+            "Straight edge",
+            "Dust sheets"
+        ]
+    },
+
+    plasterboard: {
+        name: "Plasterboard Installation",
+        list: [
+            "Plasterboard sheets",
+            "Plasterboard screws",
+            "Joint tape",
+            "Joint compound",
+            "Saw or knife",
+            "Drill/driver",
+            "Straight edge",
+            "Dust sheets"
+        ]
+    },
+
+    taping: {
+        name: "Taping & Jointing",
+        list: [
+            "Joint tape",
+            "Joint compound",
+            "Taping knife",
+            "Sanding block",
+            "Dust sheets",
+            "Mask (for sanding)"
+        ]
+    },
+
+    dampstain: {
+        name: "Damp & Stain Treatment",
+        list: [
+            "Stain block",
+            "Mould wash (if needed)",
+            "Sugar soap",
+            "Cloths",
+            "Filler (if repairing after treatment)"
+        ]
+    },
+
+    removeplaster: {
+        name: "Removing Old Plaster",
+        list: [
+            "Hammer & bolster",
+            "Pry bar",
+            "Dust sheets",
+            "Safety goggles",
+            "Gloves",
+            "Buckets",
+            "Brush"
+        ]
+    },
+
+    levelling: {
+        name: "Levelling Walls",
+        list: [
+            "Bonding coat plaster",
+            "Straight edge",
+            "Plastering trowel",
+            "Hawk",
+            "Buckets",
+            "Mixing paddle",
+            "Dust sheets"
+        ]
+    },
+
+    nosuitable: {
+        name: "Not Suitable for Plastering",
+        list: [
+            "No materials required — surface must not be plastered"
+        ]
+    }
+
+};
+
+/* ============================================================
+   END OF EDITABLE SECTION
+   ============================================================ */
+
+
+/* ===== Logic to read ?task= and display the correct list ===== */
+
+const params = new URLSearchParams(window.location.search);
+const task = params.get("task");
+
+const box = document.getElementById("resultBox");
+const howToBtn = document.getElementById("howToBtn");
+
+if (plasteringData[task]) {
+    const item = plasteringData[task];
+    let html = `<strong>${item.name}</strong><br><br>`;
+    html += "<ul>";
+    item.list.forEach(i => html += `<li>${i}</li>`);
+    html += "</ul>";
+    box.innerHTML = html;
+
+    howToBtn.onclick = () => {
+        location.href = `howto.html?task=${task}`;
+    };
+
+} else {
+    box.innerHTML = "No information found for this task.";
+    howToBtn.style.display = "none";
+}
+
+</script>
+
+</body>
+</html>

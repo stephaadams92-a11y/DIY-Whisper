@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Woodwork – What Do I Need?</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffd89b, #6dd5fa);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 30px;
+            font-size: 26px;
+            color: #333;
+        }
+
+        #resultBox {
+            background: rgba(255,255,255,0.85);
+            margin: 20px auto;
+            padding: 15px;
+            width: 80%;
+            max-width: 350px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: left;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .btn {
+            background-color: #ffffff;
+            color: #333;
+            padding: 12px 18px;
+            width: 60%;
+            max-width: 260px;
+            border-radius: 12px;
+            border: none;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        footer {
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #444;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>What Do I Need?</h1>
+
+    <div id="resultBox">
+        Loading…
+    </div>
+
+    <div class="button-container">
+        <button class="btn" id="howToBtn">How To</button>
+        <button class="btn" onclick="location.href='woodwork.html'">Back</button>
+        <button class="btn" onclick="location.href='notes.html'">Notes</button>
+        <button class="btn" onclick="location.href='menu.html'">Menu</button>
+        <button class="btn" onclick="location.href='index.html'">Home</button>
+    </div>
+
+    <footer>
+        Only continue if you feel confident and capable.
+    </footer>
+
+<script>
+
+/* ============================================================
+   WOODWORK DATA — THIS IS THE ONLY SECTION YOU EVER EDIT
+   ============================================================ */
+
+const woodworkData = {
+
+    studwalls: {
+        name: "Stud Walls & Framing",
+        list: [
+            "Timber studs (e.g., 38×63 or 38×89)",
+            "Noggins",
+            "Screws for timber",
+            "Plasterboard",
+            "Plasterboard screws",
+            "Spirit level",
+            "Tape measure",
+            "Hand saw or circular saw",
+            "Drill/driver",
+            "Pencil",
+            "Dust sheets"
+        ]
+    },
+
+    joists: {
+        name: "Joists & Structural Timber",
+        list: [
+            "Timber joists",
+            "Joist hangers (if needed)",
+            "Structural screws/bolts",
+            "Moisture meter",
+            "Saw",
+            "Drill/driver",
+            "Tape measure",
+            "Spirit level",
+            "Pry bar (for lifting boards)"
+        ]
+    },
+
+    boxing: {
+        name: "Boxing‑In & Frames",
+        list: [
+            "Timber battens",
+            "Plywood or MDF",
+            "Screws",
+            "Spirit level",
+            "Saw",
+            "Drill/driver",
+            "Tape measure",
+            "Caulk",
+            "Dust sheets"
+        ]
+    },
+
+    featurewalls: {
+        name: "Feature Walls",
+        list: [
+            "Timber battens or MDF panels",
+            "Adhesive (wood or grab adhesive)",
+            "Pins or screws",
+            "Saw",
+            "Spirit level",
+            "Tape measure",
+            "Caulk",
+            "Sandpaper"
+        ]
+    },
+
+    skirting: {
+        name: "Skirting Boards",
+        list: [
+            "Skirting boards (MDF or timber)",
+            "Adhesive or screws",
+            "Mitre saw",
+            "Caulk",
+            "Sandpaper",
+            "Tape measure",
+            "Pencil"
+        ]
+    },
+
+    architrave: {
+        name: "Architrave",
+        list: [
+            "Architrave lengths",
+            "Adhesive or pins",
+            "Mitre saw",
+            "Caulk",
+            "Tape measure",
+            "Pencil",
+            "Sandpaper"
+        ]
+    },
+
+    doors: {
+        name: "Doors",
+        list: [
+            "Internal door",
+            "Hinges",
+            "Screws",
+            "Chisel",
+            "Drill/driver",
+            "Plane or sander (for trimming)",
+            "Latch & handle set",
+            "Tape measure",
+            "Pencil"
+        ]
+    },
+
+    windowboards: {
+        name: "Window Boards / Cills",
+        list: [
+            "MDF or timber window board",
+            "Adhesive or screws",
+            "Saw",
+            "Spirit level",
+            "Caulk",
+            "Tape measure",
+            "Sandpaper"
+        ]
+    },
+
+    kitchencupboards: {
+        name: "Kitchen Cupboards (Carpentry)",
+        list: [
+            "Base units",
+            "Wall units",
+            "Fixing brackets",
+            "Screws",
+            "Spirit level",
+            "Tape measure",
+            "Drill/driver",
+            "Saw (for plinths & panels)",
+            "Shims/packers"
+        ]
+    },
+
+    floorboards: {
+        name: "Floorboards",
+        list: [
+            "Replacement boards (if needed)",
+            "Screws or nails",
+            "Pry bar",
+            "Saw",
+            "Drill/driver",
+            "Tape measure",
+            "Moisture meter",
+            "Safety gloves"
+        ]
+    },
+
+    flooringwoodwork: {
+        name: "Flooring‑Related Woodwork",
+        list: [
+            "Door trimming tools",
+            "Thresholds",
+            "Saw",
+            "Tape measure",
+            "Screws",
+            "Plane or sander",
+            "Spirit level"
+        ]
+    },
+
+    nosuitable: {
+        name: "Not Suitable for Woodwork",
+        list: [
+            "No materials required — task must not be attempted"
+        ]
+    }
+
+};
+
+/* ============================================================
+   END OF EDITABLE SECTION
+   ============================================================ */
+
+
+/* ===== Logic to read ?task= and display the correct list ===== */
+
+const params = new URLSearchParams(window.location.search);
+const task = params.get("task");
+
+const box = document.getElementById("resultBox");
+const howToBtn = document.getElementById("howToBtn");
+
+if (woodworkData[task]) {
+    const item = woodworkData[task];
+    let html = `<strong>${item.name}</strong><br><br>`;
+    html += "<ul>";
+    item.list.forEach(i => html += `<li>${i}</li>`);
+    html += "</ul>";
+    box.innerHTML = html;
+
+    howToBtn.onclick = () => {
+        location.href = `howto.html?task=${task}`;
+    };
+
+} else {
+    box.innerHTML = "No information found for this task.";
+    howToBtn.style.display = "none";
+}
+
+</script>
+
+</body>
+</html>

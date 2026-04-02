@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painting – What Do I Need?</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffd89b, #6dd5fa);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        /* Removed header completely */
+
+        #resultBox {
+            background: rgba(255,255,255,0.85);
+            margin: 25px auto 10px;
+            padding: 15px;
+            width: 80%;
+            max-width: 350px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: left;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        /* Two-column grid for buttons */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            width: 90%;
+            max-width: 420px;
+            margin: 20px auto;
+        }
+
+        /* Base button style */
+        .btn {
+            padding: 12px 10px;
+            border-radius: 12px;
+            border: none;
+            font-size: 16px;
+            color: #333;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        /* Colour coding */
+        .howto { background-color: #ffefd5; }
+        .back { background-color: #d0f0c0; }
+        .notes { background-color: #ffe4b5; }
+        .menu { background-color: #e6e6fa; }
+        .home { background-color: #f5deb3; }
+
+        footer {
+            margin-top: auto;
+            margin-bottom: 15px;
+            font-size: 13px;
+            color: #333;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="resultBox">
+        Loading…
+    </div>
+
+    <!-- Two-column button layout -->
+    <div class="grid">
+        <button class="btn howto" id="howToBtn">How To</button>
+        <button class="btn back" onclick="location.href='painting.html'">Back</button>
+
+        <button class="btn notes" onclick="location.href='notes.html'">Notes</button>
+        <button class="btn menu" onclick="location.href='menu.html'">Menu</button>
+
+        <button class="btn home" onclick="location.href='index.html'">Home</button>
+    </div>
+
+    <footer>Only continue if you feel confident and capable.</footer>
+
+<script>
+
+/* ============================================================
+   PAINTING DATA — THIS IS THE ONLY SECTION YOU EVER EDIT
+   ============================================================ */
+
+const paintingData = {
+
+    walls: {
+        name: "Walls",
+        list: [
+            "Roller & tray",
+            "Brush for edges",
+            "Extension pole",
+            "Sugar soap",
+            "Filler & filling knife",
+            "Caulk (if needed)",
+            "Sandpaper (120–180 grit)",
+            "Masking tape",
+            "Dust sheets",
+            "Emulsion paint"
+        ]
+    },
+
+    ceilings: {
+        name: "Ceilings",
+        list: [
+            "Roller & tray",
+            "Brush for edges",
+            "Extension pole",
+            "Sugar soap",
+            "Stain block (if needed)",
+            "Sandpaper",
+            "Dust sheets",
+            "Ceiling emulsion"
+        ]
+    },
+
+    skirting: {
+        name: "Skirting Boards",
+        list: [
+            "Sandpaper (120–180 grit)",
+            "Dust brush",
+            "Masking tape",
+            "Sugar soap",
+            "Primer/undercoat",
+            "Gloss/satin/eggshell",
+            "Small paintbrush",
+            "Cloths",
+            "Dust sheet"
+        ]
+    },
+
+    doors: {
+        name: "Doors",
+        list: [
+            "Sandpaper",
+            "Sugar soap",
+            "Masking tape",
+            "Primer/undercoat",
+            "Gloss/satin/eggshell",
+            "Brush or mini roller",
+            "Dust sheet"
+        ]
+    },
+
+    radiators: {
+        name: "Radiators",
+        list: [
+            "Degreaser",
+            "Sandpaper",
+            "Metal primer",
+            "Radiator paint",
+            "Small brush or radiator roller",
+            "Masking tape",
+            "Cloths"
+        ]
+    },
+
+    cupboards: {
+        name: "Kitchen Cupboards",
+        list: [
+            "Degreaser",
+            "Sugar soap",
+            "Sanding pads",
+            "Adhesion primer",
+            "Furniture paint",
+            "Mini roller & brush",
+            "Masking tape",
+            "Dust sheet"
+        ]
+    },
+
+    upvc: {
+        name: "UPVC Windows/Doors",
+        list: [
+            "Degreaser",
+            "UPVC cleaner",
+            "Fine sanding pad",
+            "Adhesion primer for UPVC",
+            "Exterior-rated paint",
+            "Brush/mini roller",
+            "Masking tape"
+        ]
+    },
+
+    tiles: {
+        name: "Tiles",
+        list: [
+            "Degreaser",
+            "Tile primer",
+            "Tile paint",
+            "Brush/mini roller",
+            "Masking tape",
+            "Cloths"
+        ]
+    },
+
+    floors: {
+        name: "Floors",
+        list: [
+            "Degreaser",
+            "Floor sander or sanding pads",
+            "Floor primer",
+            "Floor paint",
+            "Roller & tray",
+            "Masking tape",
+            "Dust sheets"
+        ]
+    },
+
+    special: {
+        name: "Special Surfaces",
+        list: [
+            "Surface-specific cleaner",
+            "Adhesion primer",
+            "Correct specialist paint",
+            "Brush/roller",
+            "Masking tape",
+            "Cloths"
+        ]
+    }
+
+};
+
+/* ============================================================
+   END OF EDITABLE SECTION
+   ============================================================ */
+
+
+/* ===== Logic to read ?task= and display the correct list ===== */
+
+const params = new URLSearchParams(window.location.search);
+const task = params.get("task");
+
+const box = document.getElementById("resultBox");
+const howToBtn = document.getElementById("howToBtn");
+
+if (paintingData[task]) {
+    const item = paintingData[task];
+    let html = `<strong>${item.name}</strong><br><br>`;
+    html += "<ul>";
+    item.list.forEach(i => html += `<li>${i}</li>`);
+    html += "</ul>";
+    box.innerHTML = html;
+
+    howToBtn.onclick = () => {
+        location.href = `howto.html?task=${task}`;
+    };
+
+} else {
+    box.innerHTML = "No information found for this task.";
+    howToBtn.style.display = "none";
+}
+
+</script>
+
+</body>
+</html>

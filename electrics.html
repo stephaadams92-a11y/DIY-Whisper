@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Electrics Tasks</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffd89b, #6dd5fa);
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 35px;
+            font-size: 28px;
+            color: #333;
+        }
+
+        /* Two-column grid for electrics tasks */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            width: 90%;
+            max-width: 500px;
+            margin: 20px auto;
+        }
+
+        /* Bottom navigation row */
+        .nav-row {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 25px;
+            margin-bottom: 20px;
+        }
+
+        /* Base button style */
+        .btn {
+            padding: 14px 10px;
+            border-radius: 12px;
+            border: none;
+            font-size: 16px;
+            color: #333;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        /* Individual colours for electrics tasks */
+        .bulbs { background-color: #ffefd5; }
+        .lightfittings { background-color: #d0f0c0; }
+        .switches { background-color: #ffe4b5; }
+        .sockets { background-color: #e6e6fa; }
+        .extractorfans { background-color: #f5deb3; }
+        .doorbells { background-color: #fffacd; }
+        .pluginovens { background-color: #c1f0f6; }
+        .troubleshooting { background-color: #d8bfd8; }
+        .cablemanagement { background-color: #fafad2; }
+        .nosuitable { background-color: #ffd7ba; }
+
+        /* Navigation button colours */
+        .nav-btn { background-color: #ffffff; width: 30%; }
+
+        footer {
+            margin-top: auto;
+            margin-bottom: 15px;
+            font-size: 13px;
+            color: #333;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Electrics Tasks</h1>
+
+    <div class="grid">
+        <button class="btn bulbs" onclick="location.href='electrics-results.html?task=bulbs'">Changing Light Bulbs</button>
+        <button class="btn lightfittings" onclick="location.href='electrics-results.html?task=lightfittings'">Replacing Light Fittings</button>
+
+        <button class="btn switches" onclick="location.href='electrics-results.html?task=switches'">Replacing Switches</button>
+        <button class="btn sockets" onclick="location.href='electrics-results.html?task=sockets'">Replacing Sockets</button>
+
+        <button class="btn extractorfans" onclick="location.href='electrics-results.html?task=extractorfans'">Extractor Fans (Like‑for‑Like)</button>
+        <button class="btn doorbells" onclick="location.href='electrics-results.html?task=doorbells'">Doorbells & Chimes</button>
+
+        <button class="btn pluginovens" onclick="location.href='electrics-results.html?task=pluginovens'">Plug‑In Ovens & Hobs</button>
+        <button class="btn troubleshooting" onclick="location.href='electrics-results.html?task=troubleshooting'">Basic Troubleshooting</button>
+
+        <button class="btn cablemanagement" onclick="location.href='electrics-results.html?task=cablemanagement'">Cable Management</button>
+        <button class="btn nosuitable" onclick="location.href='electrics-results.html?task=nosuitable'">Not Suitable</button>
+    </div>
+
+    <!-- Bottom navigation row -->
+    <div class="nav-row">
+        <button class="btn nav-btn" onclick="location.href='index.html'">Home</button>
+        <button class="btn nav-btn" onclick="location.href='menu.html'">Menu</button>
+        <button class="btn nav-btn" onclick="location.href='notes.html'">Notes</button>
+    </div>
+
+    <footer>Only continue if you feel confident and capable.</footer>
+
+</body>
+</html>

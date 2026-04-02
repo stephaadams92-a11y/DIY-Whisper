@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tiling – What Do I Need?</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffd89b, #6dd5fa);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 30px;
+            font-size: 26px;
+            color: #333;
+        }
+
+        #resultBox {
+            background: rgba(255,255,255,0.85);
+            margin: 20px auto;
+            padding: 15px;
+            width: 80%;
+            max-width: 350px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: left;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .btn {
+            background-color: #ffffff;
+            color: #333;
+            padding: 12px 18px;
+            width: 60%;
+            max-width: 260px;
+            border-radius: 12px;
+            border: none;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        footer {
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #444;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>What Do I Need?</h1>
+
+    <div id="resultBox">
+        Loading…
+    </div>
+
+    <div class="button-container">
+        <button class="btn" id="howToBtn">How To</button>
+        <button class="btn" onclick="location.href='tiling.html'">Back</button>
+        <button class="btn" onclick="location.href='notes.html'">Notes</button>
+        <button class="btn" onclick="location.href='menu.html'">Menu</button>
+        <button class="btn" onclick="location.href='index.html'">Home</button>
+    </div>
+
+    <footer>
+        Only continue if you feel confident and capable.
+    </footer>
+
+<script>
+
+/* ============================================================
+   TILING DATA — THIS IS THE ONLY SECTION YOU EVER EDIT
+   ============================================================ */
+
+const tilingData = {
+
+    walltiles: {
+        name: "Standard Wall Tiles",
+        list: [
+            "Ceramic wall tiles",
+            "Ready-mixed wall tile adhesive",
+            "Tile spacers",
+            "Tile cutter or score-and-snap cutter",
+            "Spirit level",
+            "Notched trowel",
+            "Grout",
+            "Grout float",
+            "Sponge & bucket",
+            "Sealant (for edges)",
+            "Dust sheets"
+        ]
+    },
+
+    floortiles: {
+        name: "Standard Floor Tiles",
+        list: [
+            "Ceramic or porcelain floor tiles",
+            "Powdered flexible floor adhesive",
+            "Tile spacers",
+            "Tile cutter or wet saw",
+            "Notched trowel",
+            "Spirit level",
+            "Flexible grout",
+            "Grout float",
+            "Sponge & bucket",
+            "Knee pads",
+            "Dust sheets"
+        ]
+    },
+
+    porcelain: {
+        name: "Porcelain Tiles",
+        list: [
+            "Porcelain tiles",
+            "Flexible powdered adhesive",
+            "Tile spacers",
+            "Diamond blade tile cutter or wet saw",
+            "Notched trowel",
+            "Flexible grout",
+            "Grout float",
+            "Sponge & bucket",
+            "Spirit level"
+        ]
+    },
+
+    largeformat: {
+        name: "Large‑Format Tiles",
+        list: [
+            "Large-format tiles",
+            "Flexible powdered adhesive",
+            "Large trowel (10–12mm)",
+            "Tile levelling clips & wedges",
+            "Wet saw",
+            "Flexible grout",
+            "Suction lifters",
+            "Spirit level",
+            "Spacers",
+            "Dust sheets"
+        ]
+    },
+
+    mosaic: {
+        name: "Mosaic Tiles",
+        list: [
+            "Mosaic sheets",
+            "Ready-mixed adhesive",
+            "Small notched trowel",
+            "Tile spacers",
+            "Tile nippers",
+            "Grout",
+            "Grout float",
+            "Sponge & bucket",
+            "Spirit level"
+        ]
+    },
+
+    peelstick: {
+        name: "Peel‑and‑Stick Tiles",
+        list: [
+            "Peel-and-stick tile sheets",
+            "Spirit level",
+            "Smoothing tool",
+            "Sharp knife",
+            "Cleaning wipes",
+            "Cloths"
+        ]
+    },
+
+    overtile: {
+        name: "Tiling Over Tiles",
+        list: [
+            "Flexible powdered adhesive",
+            "Degreaser",
+            "Sanding block (to key old tiles)",
+            "Tile spacers",
+            "Tile cutter",
+            "Grout",
+            "Grout float",
+            "Sponge & bucket"
+        ]
+    },
+
+    freshplaster: {
+        name: "Tiling Over Fresh Plaster",
+        list: [
+            "Flexible adhesive",
+            "Primer/sealer (NOT PVA)",
+            "Tile spacers",
+            "Tile cutter",
+            "Grout",
+            "Grout float",
+            "Sponge & bucket",
+            "Spirit level"
+        ]
+    },
+
+    plasterboard: {
+        name: "Tiling Over Plasterboard",
+        list: [
+            "Flexible adhesive",
+            "Tile spacers",
+            "Tile cutter",
+            "Grout",
+            "Grout float",
+            "Sponge & bucket",
+            "Backer board (recommended for wet areas)"
+        ]
+    },
+
+    uneven: {
+        name: "Uneven Surfaces",
+        list: [
+            "Levelling compound",
+            "Flexible adhesive",
+            "Tile spacers",
+            "Tile cutter",
+            "Grout",
+            "Grout float",
+            "Sponge & bucket",
+            "Spirit level"
+        ]
+    },
+
+    stone: {
+        name: "Natural Stone Tiles",
+        list: [
+            "Stone tiles (travertine, slate, marble)",
+            "White flexible adhesive",
+            "Tile spacers",
+            "Wet saw",
+            "Stone sealer",
+            "Grout (stone-safe)",
+            "Grout float",
+            "Sponge & bucket"
+        ]
+    },
+
+    nosuitable: {
+        name: "Not Suitable for Tiling",
+        list: [
+            "No materials required — surface must not be tiled"
+        ]
+    }
+
+};
+
+/* ============================================================
+   END OF EDITABLE SECTION
+   ============================================================ */
+
+
+/* ===== Logic to read ?task= and display the correct list ===== */
+
+const params = new URLSearchParams(window.location.search);
+const task = params.get("task");
+
+const box = document.getElementById("resultBox");
+const howToBtn = document.getElementById("howToBtn");
+
+if (tilingData[task]) {
+    const item = tilingData[task];
+    let html = `<strong>${item.name}</strong><br><br>`;
+    html += "<ul>";
+    item.list.forEach(i => html += `<li>${i}</li>`);
+    html += "</ul>";
+    box.innerHTML = html;
+
+    howToBtn.onclick = () => {
+        location.href = `howto.html?task=${task}`;
+    };
+
+} else {
+    box.innerHTML = "No information found for this task.";
+    howToBtn.style.display = "none";
+}
+
+</script>
+
+</body>
+</html>

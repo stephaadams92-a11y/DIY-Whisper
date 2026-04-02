@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DIY Menu</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffd89b, #6dd5fa);
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 35px;
+            font-size: 30px;
+            color: #333;
+        }
+
+        h2 {
+            margin-top: 25px;
+            font-size: 22px;
+            color: #333;
+        }
+
+        /* Two-column grid for Indoors */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            width: 90%;
+            max-width: 500px;
+            margin: 15px auto;
+        }
+
+        /* Outdoors container stays single-column */
+        .single-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 10px;
+            margin-bottom: 40px;
+        }
+
+        /* Base button style */
+        .btn {
+            padding: 14px 10px;
+            border-radius: 12px;
+            border: none;
+            font-size: 16px;
+            color: #333;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        /* Individual button colours */
+        .painting { background-color: #ffefd5; }        /* soft peach */
+        .wallpapering { background-color: #d0f0c0; }    /* mint */
+        .tiling { background-color: #ffe4b5; }          /* light tan */
+        .flooring { background-color: #e6e6fa; }        /* lavender */
+        .woodwork { background-color: #f5deb3; }        /* wheat */
+        .plastering { background-color: #fffacd; }      /* lemon */
+        .electrics { background-color: #c1f0f6; }       /* pale aqua */
+        .plumbing { background-color: #d8bfd8; }        /* thistle */
+        .around { background-color: #fafad2; }          /* light golden */
+        .outdoor { background-color: #e0cda9; }         /* warm beige */
+        /* Navigation row */
+        .nav-row {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 10px;
+            margin-bottom: 30px;
+        }
+
+        .nav-btn {
+            background-color: #ffffff;
+            padding: 12px 10px;
+            border-radius: 12px;
+            border: none;
+            font-size: 15px;
+            color: #333;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            cursor: pointer;
+            width: 28%;
+            max-width: 110px;
+        }
+
+        .nav-btn:active {
+            transform: scale(0.97);
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>DIY Menu</h1>
+
+    <h2>Indoors</h2>
+
+    <div class="grid">
+        <button class="btn painting" onclick="location.href='painting.html'">Painting</button>
+        <button class="btn wallpapering" onclick="location.href='wallpapering.html'">Wallpapering</button>
+
+        <button class="btn tiling" onclick="location.href='tiling.html'">Tiling</button>
+        <button class="btn flooring" onclick="location.href='flooring.html'">Flooring</button>
+
+        <button class="btn woodwork" onclick="location.href='woodwork.html'">Woodwork</button>
+        <button class="btn plastering" onclick="location.href='plastering.html'">Plastering & Walls</button>
+
+        <button class="btn electrics" onclick="location.href='electrics.html'">Electrics (like-for-like)</button>
+        <button class="btn plumbing" onclick="location.href='plumbing.html'">Plumbing (DIY-safe)</button>
+
+        <button class="btn around" onclick="location.href='around-the-house.html'">Around the House</button>
+    </div>
+
+    <h2>Outdoors</h2>
+
+    <div class="single-container">
+        <button class="btn outdoor" onclick="location.href='outdoors.html'">Outdoor DIY</button>
+    </div>
+    <div class="nav-row">
+        <button class="nav-btn" onclick="location.href='index.html'">Home</button>
+        <button class="nav-btn" onclick="location.href='notes.html'">Notes</button>
+    </div>
+
+</body>
+</html>

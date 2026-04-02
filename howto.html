@@ -1,0 +1,2869 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>How To</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffd89b, #6dd5fa);
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 30px;
+            font-size: 26px;
+            color: #333;
+        }
+
+        #howToBox {
+            background: rgba(255,255,255,0.85);
+            margin: 20px auto;
+            padding: 15px;
+            width: 85%;
+            max-width: 420px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: left;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        .section-title {
+            font-weight: bold;
+            margin-top: 12px;
+        }
+
+        .button-container {
+            margin-top: auto;
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn {
+            background-color: #ffffff;
+            color: #333;
+            padding: 12px 18px;
+            width: 60%;
+            max-width: 260px;
+            border-radius: 12px;
+            border: none;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+    </style>
+</head>
+
+<body>
+
+<h1>How To</h1>
+
+<div id="howToBox">Loading…</div>
+
+<div class="button-container">
+    <button class="btn" onclick="history.back()">Back</button>
+    <button class="btn" onclick="location.href='menu.html'">Menu</button>
+    <button class="btn" onclick="location.href='index.html'">Home</button>
+</div>
+
+<script>
+/* ============================================================
+   UNIVERSAL HOW-TO DATA
+   ============================================================ */
+
+const howToData = {
+
+    /* ===========================
+       PAINTING
+    ============================ */
+
+    walls: {
+        name: "Painting Walls",
+        warnings: [
+            "Gloss is not suitable for walls.",
+            "Use kitchen/bathroom paint in moisture‑heavy rooms.",
+            "Ensure good ventilation when painting.",
+            "Avoid painting over damp or mould until treated."
+        ],
+        tools: [
+            "Roller & tray",
+            "Brushes",
+            "Sandpaper",
+            "Dust sheets",
+            "Masking tape"
+        ],
+        steps: [
+            "Clean the walls with sugar soap.",
+            "Fill holes and sand smooth.",
+            "Apply masking tape to edges.",
+            "Cut in around edges with a brush.",
+            "Roll the main areas in a W pattern.",
+            "Apply a second coat once dry."
+        ],
+        hints: [
+            "Keep a wet edge to avoid roller marks.",
+            "Use long‑pile rollers for textured walls.",
+            "Warm rooms dry faster than cold ones."
+        ]
+    },
+
+    ceilings: {
+        name: "Painting Ceilings",
+        warnings: [
+            "Protect floors and furniture from drips.",
+            "Avoid overreaching — use a platform or step ladder safely."
+        ],
+        tools: [
+            "Extension pole",
+            "Roller & tray",
+            "Brush",
+            "Dust sheets"
+        ],
+        steps: [
+            "Cover the room and move furniture if possible.",
+            "Cut in around the edges with a brush.",
+            "Roll in straight lines, keeping a wet edge.",
+            "Allow to dry fully before applying a second coat."
+        ],
+        hints: [
+            "Use matt paint to hide imperfections.",
+            "Work towards the light source for fewer shadows."
+        ]
+    },
+
+    skirting: {
+        name: "Painting Skirting Boards",
+        warnings: [
+            "Avoid getting paint on flooring — tape edges carefully.",
+            "Do not paint over loose or flaking material."
+        ],
+        tools: [
+            "Small brush",
+            "Masking tape",
+            "Sandpaper",
+            "Vacuum or brush"
+        ],
+        steps: [
+            "Clean and lightly sand the skirting.",
+            "Tape along the floor edge.",
+            "Apply undercoat if needed.",
+            "Paint with smooth, even strokes.",
+            "Remove tape before paint fully dries."
+        ],
+        hints: [
+            "Use a paint guard for extra protection.",
+            "Gloss shows marks — satinwood is more forgiving."
+        ]
+    },
+
+    doors: {
+        name: "Painting Doors",
+        warnings: [
+            "Remove handles if possible to avoid mess.",
+            "Do not paint over hinges."
+        ],
+        tools: [
+            "Brushes",
+            "Sanding block",
+            "Screwdriver",
+            "Dust sheets"
+        ],
+        steps: [
+            "Remove or tape around hardware.",
+            "Lightly sand the door.",
+            "Paint panels first, then the main sections.",
+            "Allow to dry fully before flipping or closing."
+        ],
+        hints: [
+            "Use a mini‑roller for smooth finishes.",
+            "Work in thin coats to avoid drips."
+        ]
+    },
+    radiators: {
+        name: "Painting Radiators",
+        warnings: [
+            "Ensure the radiator is completely cool before starting.",
+            "Use radiator‑safe paint only.",
+            "Avoid painting valves or moving parts."
+        ],
+        tools: [
+            "Radiator brush",
+            "Mini roller",
+            "Dust sheets",
+            "Degreaser"
+        ],
+        steps: [
+            "Turn the radiator off and allow it to cool fully.",
+            "Clean thoroughly with degreaser.",
+            "Lightly sand glossy surfaces.",
+            "Apply metal primer if required.",
+            "Paint in long, even strokes using a brush or mini roller."
+        ],
+        hints: [
+            "Use a radiator brush for hard‑to‑reach areas.",
+            "Thin coats reduce drips and improve durability."
+        ]
+    },
+
+    cupboards: {
+        name: "Painting Kitchen Cupboards",
+        warnings: [
+            "Degrease thoroughly — grease prevents paint bonding.",
+            "Use specialist cupboard paint for durability.",
+            "Avoid painting hinges or soft‑close mechanisms."
+        ],
+        tools: [
+            "Degreaser",
+            "Sanding pads",
+            "Mini roller",
+            "Brush",
+            "Masking tape"
+        ],
+        steps: [
+            "Remove doors if possible and label hinges.",
+            "Clean and sand surfaces lightly.",
+            "Apply primer if needed.",
+            "Paint in thin, even coats using a foam roller.",
+            "Allow full drying before re‑fitting."
+        ],
+        hints: [
+            "A foam roller gives a smooth, factory‑like finish.",
+            "Number doors and cabinets to avoid mix‑ups."
+        ]
+    },
+
+    upvc: {
+        name: "Painting UPVC Windows & Doors",
+        warnings: [
+            "Only paint UPVC that is in good condition.",
+            "Avoid painting in direct sunlight.",
+            "Use UPVC‑specific paint for proper adhesion."
+        ],
+        tools: [
+            "UPVC cleaner",
+            "Fine sandpaper",
+            "Masking tape",
+            "Brush/roller"
+        ],
+        steps: [
+            "Clean thoroughly with UPVC cleaner.",
+            "Lightly sand to key the surface.",
+            "Mask surrounding areas carefully.",
+            "Apply specialist UPVC paint in thin coats."
+        ],
+        hints: [
+            "Two thin coats give the best finish.",
+            "Choose a warm, dry day for outdoor UPVC."
+        ]
+    },
+
+    tiles: {
+        name: "Painting Tiles",
+        warnings: [
+            "Only suitable for low‑wear areas.",
+            "Use tile‑specific primer and paint.",
+            "Avoid painting inside showers or wet zones."
+        ],
+        tools: [
+            "Degreaser",
+            "Tile primer",
+            "Foam roller",
+            "Brush"
+        ],
+        steps: [
+            "Clean tiles thoroughly.",
+            "Apply tile primer evenly.",
+            "Paint with thin coats using a foam roller.",
+            "Allow full curing time before use."
+        ],
+        hints: [
+            "Mask grout lines if you want them to stay crisp.",
+            "Avoid heavy pressure — foam rollers give smoother results."
+        ]
+    },
+
+    floors: {
+        name: "Painting Floors",
+        warnings: [
+            "Use floor‑specific paint only.",
+            "Ensure the room is well ventilated.",
+            "Do not walk on the floor until fully dry."
+        ],
+        tools: [
+            "Roller",
+            "Brush",
+            "Floor paint",
+            "Degreaser",
+            "Sanding pads"
+        ],
+        steps: [
+            "Clean and sand the floor.",
+            "Vacuum dust thoroughly.",
+            "Apply paint in long, even strokes.",
+            "Allow full drying before walking on it.",
+            "Apply a second coat for durability."
+        ],
+        hints: [
+            "Start at the far corner and work backwards.",
+            "Use a long‑pile roller for textured floors."
+        ]
+    },
+
+    special: {
+        name: "Painting Special Surfaces",
+        warnings: [
+            "Check compatibility of paint with the surface.",
+            "Do not paint over unstable or damaged materials.",
+            "Use specialist primers for glossy or unusual surfaces."
+        ],
+        tools: [
+            "Primer",
+            "Brushes",
+            "Roller",
+            "Sandpaper"
+        ],
+        steps: [
+            "Clean and prepare the surface thoroughly.",
+            "Apply appropriate primer.",
+            "Paint in thin coats.",
+            "Allow full drying time between coats."
+        ],
+        hints: [
+            "Test a small area first.",
+            "Specialist primers improve adhesion dramatically."
+        ]
+    },
+
+    /* ===========================
+       WALLPAPERING
+    ============================ */
+
+    standard: {
+        name: "Standard Wallpaper",
+        warnings: [
+            "Turn off power before removing socket/switch plates.",
+            "Do not wallpaper over damp or mould.",
+            "Avoid stretching the paper — it will shrink when dry."
+        ],
+        tools: [
+            "Wallpaper paste",
+            "Paste brush/roller",
+            "Seam roller",
+            "Sharp knife",
+            "Spirit level"
+        ],
+        steps: [
+            "Mark a straight plumb line using a level.",
+            "Apply paste evenly to the back of the paper.",
+            "Fold (book) the paper and allow it to soak.",
+            "Hang the first drop along the plumb line.",
+            "Smooth bubbles from the centre outward.",
+            "Trim top and bottom cleanly."
+        ],
+        hints: [
+            "Change blades often for clean cuts.",
+            "Match patterns carefully before hanging."
+        ]
+    },
+
+    pastewall: {
+        name: "Paste‑the‑Wall Wallpaper",
+        warnings: [
+            "Do not over‑paste — it can cause slipping.",
+            "Avoid stretching the paper when smoothing."
+        ],
+        tools: [
+            "Roller",
+            "Paste tray",
+            "Knife",
+            "Smoother"
+        ],
+        steps: [
+            "Roll paste directly onto the wall.",
+            "Apply wallpaper dry from the top.",
+            "Smooth gently to avoid tearing.",
+            "Trim edges neatly with a sharp blade."
+        ],
+        hints: [
+            "Great for beginners — less mess.",
+            "Work in small sections to keep paste wet."
+        ]
+    },
+
+    peelstick: {
+        name: "Peel‑and‑Stick Wallpaper",
+        warnings: [
+            "Not suitable for textured walls.",
+            "Avoid repositioning too many times — adhesive weakens."
+        ],
+        tools: [
+            "Smoother",
+            "Knife",
+            "Tape measure"
+        ],
+        steps: [
+            "Peel a small section of backing.",
+            "Align and stick the top edge.",
+            "Smooth downward while peeling backing.",
+            "Trim edges carefully."
+        ],
+        hints: [
+            "Ideal for rentals.",
+            "Warm the adhesive slightly for better grip."
+        ]
+    },
+
+    feature: {
+        name: "Feature Wall",
+        warnings: [
+            "Pattern alignment is crucial.",
+            "Avoid starting in a corner unless instructed."
+        ],
+        tools: [
+            "Spirit level",
+            "Knife",
+            "Paste",
+            "Smoother"
+        ],
+        steps: [
+            "Find the centre of the wall.",
+            "Hang the first drop perfectly straight.",
+            "Work outwards, matching patterns carefully.",
+            "Trim edges neatly."
+        ],
+        hints: [
+            "Use a laser level for accuracy.",
+            "Stand back often to check alignment."
+        ]
+    },
+
+    borders: {
+        name: "Wallpaper Borders",
+        warnings: [
+            "Ensure the wall is clean and dry.",
+            "Avoid stretching the border — it will shrink."
+        ],
+        tools: [
+            "Border paste",
+            "Brush",
+            "Knife"
+        ],
+        steps: [
+            "Mark a level line around the room.",
+            "Apply paste sparingly to the border.",
+            "Press border into place along the line.",
+            "Smooth gently to remove bubbles."
+        ],
+        hints: [
+            "Use a small roller for corners.",
+            "Overlap joins slightly for a cleaner finish."
+        ]
+    },
+    ceilings: {
+        name: "Wallpapering Ceilings",
+        warnings: [
+            "Use two people for safety — ceilings are awkward.",
+            "Avoid working above your limit; use safe access equipment.",
+            "Do not wallpaper over damp or unstable surfaces."
+        ],
+        tools: [
+            "Paste",
+            "Roller",
+            "Knife",
+            "Smoother",
+            "Step ladder or platform"
+        ],
+        steps: [
+            "Mark straight guidelines across the ceiling.",
+            "Apply paste evenly.",
+            "Lift the paper into place with assistance.",
+            "Smooth from the centre outward to remove bubbles.",
+            "Trim edges neatly with a sharp blade."
+        ],
+        hints: [
+            "Lightweight paper is easier overhead.",
+            "Work slowly — ceilings take patience."
+        ]
+    },
+
+    overexisting: {
+        name: "Wallpaper Over Existing Paper",
+        warnings: [
+            "Only suitable if the old paper is firmly stuck.",
+            "Do not wallpaper over vinyl without scoring it first.",
+            "Avoid covering loose seams — they will show through."
+        ],
+        tools: [
+            "Scoring tool",
+            "Paste",
+            "Knife",
+            "Smoother"
+        ],
+        steps: [
+            "Check adhesion of the old wallpaper.",
+            "Score vinyl surfaces to help paste bond.",
+            "Apply paste and hang new paper.",
+            "Smooth gently and trim edges."
+        ],
+        hints: [
+            "Test a small area first.",
+            "Avoid heavy papers on weak surfaces."
+        ]
+    },
+
+    lining: {
+        name: "Lining Paper",
+        warnings: [
+            "Do not overlap seams — butt them together.",
+            "Avoid stretching the paper when smoothing.",
+            "Allow full drying time before painting or wallpapering."
+        ],
+        tools: [
+            "Paste",
+            "Brush",
+            "Knife",
+            "Smoother"
+        ],
+        steps: [
+            "Hang horizontally or vertically depending on finish.",
+            "Smooth bubbles out from the centre.",
+            "Trim edges neatly.",
+            "Allow to dry fully before decorating."
+        ],
+        hints: [
+            "Great for hiding minor imperfections.",
+            "Use 1200 grade for rough walls."
+        ]
+    },
+
+    bareplaster: {
+        name: "Wallpapering Bare Plaster",
+        warnings: [
+            "Never wallpaper bare plaster without sealing it.",
+            "Avoid over‑wetting fresh plaster.",
+            "Ensure plaster is fully dry before starting."
+        ],
+        tools: [
+            "Mist coat",
+            "Paste",
+            "Knife",
+            "Smoother"
+        ],
+        steps: [
+            "Apply a mist coat to seal the plaster.",
+            "Allow it to dry fully.",
+            "Paste and hang wallpaper carefully.",
+            "Smooth and trim edges."
+        ],
+        hints: [
+            "Use breathable papers on new plaster.",
+            "Check for moisture patches before starting."
+        ]
+    },
+
+    problems: {
+        name: "Problem Surfaces",
+        warnings: [
+            "Do not wallpaper over damp or mould.",
+            "Loose plaster must be repaired before decorating.",
+            "Stains may bleed through without proper treatment."
+        ],
+        tools: [
+            "Stain block",
+            "Filler",
+            "Paste",
+            "Knife"
+        ],
+        steps: [
+            "Treat stains or marks with stain block.",
+            "Repair damaged areas with filler.",
+            "Sand smooth once dry.",
+            "Hang wallpaper once the surface is sound."
+        ],
+        hints: [
+            "Use lining paper for uneven walls.",
+            "Avoid heavy papers on weak surfaces."
+        ]
+    },
+
+    nosuitable: {
+        name: "Not Suitable",
+        warnings: [
+            "This task is not safe or appropriate for DIY.",
+            "Specialist skills or equipment are required.",
+            "Attempting this yourself may cause damage or risk."
+        ],
+        tools: [],
+        steps: [
+            "Stop here and do not continue.",
+            "Seek a qualified professional for this task."
+        ],
+        hints: [
+            "Your safety and home integrity come first.",
+            "Choosing not to proceed is always the right call when unsure."
+        ]
+    },
+
+    /* ===========================
+       TILING
+    ============================ */
+
+    walltiles: {
+        name: "Standard Wall Tiles",
+        warnings: [
+            "Ensure the wall is sound, dry, and dust‑free.",
+            "Do not tile over loose plaster or blown areas.",
+            "Use the correct adhesive for your tile type."
+        ],
+        tools: [
+            "Tile adhesive",
+            "Notched trowel",
+            "Tile spacers",
+            "Tile cutter",
+            "Spirit level"
+        ],
+        steps: [
+            "Mark a level starting line.",
+            "Apply adhesive with a notched trowel.",
+            "Press tiles firmly into place using spacers.",
+            "Check alignment regularly with a level.",
+            "Allow adhesive to dry before grouting."
+        ],
+        hints: [
+            "Start from the centre for feature walls.",
+            "Use tile wedges for micro‑adjustments."
+        ]
+    },
+
+    floortiles: {
+        name: "Standard Floor Tiles",
+        warnings: [
+            "Ensure the subfloor is level and stable.",
+            "Use flexible adhesive on timber floors.",
+            "Avoid walking on tiles until adhesive has set."
+        ],
+        tools: [
+            "Tile adhesive",
+            "Notched trowel",
+            "Tile spacers",
+            "Tile cutter",
+            "Rubber mallet"
+        ],
+        steps: [
+            "Dry‑lay tiles to plan your layout.",
+            "Spread adhesive evenly.",
+            "Lay tiles with spacers.",
+            "Tap gently with a mallet to bed them in.",
+            "Allow to dry before grouting."
+        ],
+        hints: [
+            "Start from the centre of the room.",
+            "Use levelling clips for large tiles."
+        ]
+    },
+
+    porcelain: {
+        name: "Porcelain Tiles",
+        warnings: [
+            "Porcelain requires stronger adhesive.",
+            "Cutting porcelain needs a quality cutter or wet saw.",
+            "Heavy tiles need firm support during installation."
+        ],
+        tools: [
+            "Porcelain‑rated cutter",
+            "Strong adhesive",
+            "Spacers",
+            "Trowel"
+        ],
+        steps: [
+            "Check tiles for shade variation.",
+            "Apply adhesive with a deep‑notched trowel.",
+            "Lay tiles carefully with spacers.",
+            "Cut using a porcelain‑rated cutter.",
+            "Allow full drying time before grouting."
+        ],
+        hints: [
+            "Wet saws give the cleanest cuts.",
+            "Porcelain is heavy — work slowly and safely."
+        ]
+    },
+
+    largeformat: {
+        name: "Large‑Format Tiles",
+        warnings: [
+            "Large tiles require a perfectly level surface.",
+            "Use levelling clips to prevent lippage.",
+            "Two people may be needed for lifting."
+        ],
+        tools: [
+            "Large‑format trowel",
+            "Levelling clips",
+            "Tile suction cups",
+            "Tile cutter"
+        ],
+        steps: [
+            "Check the surface for levelness.",
+            "Apply adhesive evenly with a large‑format trowel.",
+            "Lift tiles using suction cups.",
+            "Lay tiles and insert levelling clips.",
+            "Allow to dry fully before grouting."
+        ],
+        hints: [
+            "Back‑butter tiles for better adhesion.",
+            "Work slowly — precision matters with large tiles."
+        ]
+    },
+    mosaic: {
+        name: "Mosaic Tiles",
+        warnings: [
+            "Mosaic sheets require a perfectly flat surface.",
+            "Use the correct trowel size to avoid adhesive bleed‑through.",
+            "Do not press too hard — sheets can distort."
+        ],
+        tools: [
+            "Small‑notch trowel",
+            "Tile adhesive",
+            "Tile spacers",
+            "Tile nippers",
+            "Grout float"
+        ],
+        steps: [
+            "Apply adhesive with a small‑notch trowel.",
+            "Press mosaic sheets gently into place.",
+            "Check alignment between sheets.",
+            "Cut small pieces using tile nippers.",
+            "Allow adhesive to dry before grouting."
+        ],
+        hints: [
+            "Use a wooden block to tap sheets evenly.",
+            "Mesh‑backed sheets are easier for beginners."
+        ]
+    },
+
+    peelsticktiles: {
+        name: "Peel‑and‑Stick Tiles",
+        warnings: [
+            "Not suitable for wet areas or uneven surfaces.",
+            "Adhesive weakens if repositioned too many times.",
+            "Avoid installing near heat sources."
+        ],
+        tools: [
+            "Utility knife",
+            "Straight edge",
+            "Tape measure",
+            "Smoother"
+        ],
+        steps: [
+            "Clean and degrease the surface thoroughly.",
+            "Mark guidelines for alignment.",
+            "Peel backing and stick tiles carefully.",
+            "Press firmly to ensure adhesion.",
+            "Trim edges with a sharp knife."
+        ],
+        hints: [
+            "Warm tiles slightly for better adhesion.",
+            "Ideal for quick refreshes and rentals."
+        ]
+    },
+
+    overtile: {
+        name: "Tiling Over Tiles",
+        warnings: [
+            "Only suitable if existing tiles are firmly bonded.",
+            "Use a bonding primer for glossy surfaces.",
+            "Check door clearances — height increases."
+        ],
+        tools: [
+            "Bonding primer",
+            "Tile adhesive",
+            "Notched trowel",
+            "Tile spacers"
+        ],
+        steps: [
+            "Clean and degrease existing tiles.",
+            "Apply bonding primer if tiles are glossy.",
+            "Spread adhesive evenly.",
+            "Lay new tiles with spacers.",
+            "Allow to dry before grouting."
+        ],
+        hints: [
+            "Tap tiles to check for hollow sounds — avoid tiling over loose ones.",
+            "Use flexible adhesive for best results."
+        ]
+    },
+
+    freshplaster: {
+        name: "Tiling Over Fresh Plaster",
+        warnings: [
+            "Plaster must be fully dry before tiling.",
+            "Do not tile over weak or powdery surfaces.",
+            "Use primer if recommended by adhesive manufacturer."
+        ],
+        tools: [
+            "Primer",
+            "Tile adhesive",
+            "Trowel",
+            "Spacers"
+        ],
+        steps: [
+            "Check plaster is fully dry and firm.",
+            "Apply primer if required.",
+            "Spread adhesive evenly.",
+            "Lay tiles with spacers.",
+            "Allow to dry before grouting."
+        ],
+        hints: [
+            "Fresh plaster changes colour as it dries — check carefully.",
+            "Use lightweight tiles on new plaster."
+        ]
+    },
+
+    plasterboard: {
+        name: "Tiling Over Plasterboard",
+        warnings: [
+            "Use moisture‑resistant boards in wet areas.",
+            "Do not tile over damaged or sagging boards.",
+            "Check weight limits for plasterboard."
+        ],
+        tools: [
+            "Tile adhesive",
+            "Notched trowel",
+            "Spacers",
+            "Tile cutter"
+        ],
+        steps: [
+            "Ensure boards are securely fixed.",
+            "Prime if required by adhesive type.",
+            "Spread adhesive evenly.",
+            "Lay tiles with spacers.",
+            "Allow to dry before grouting."
+        ],
+        hints: [
+            "Use backer boards in showers for better durability.",
+            "Avoid heavy stone tiles on standard plasterboard."
+        ]
+    },
+
+    uneven: {
+        name: "Tiling Uneven Surfaces",
+        warnings: [
+            "Do not tile over severely uneven or unstable surfaces.",
+            "Use levelling compound where needed.",
+            "Tiles may crack if the base is not stable."
+        ],
+        tools: [
+            "Levelling compound",
+            "Trowel",
+            "Tile adhesive",
+            "Spacers"
+        ],
+        steps: [
+            "Assess the unevenness of the surface.",
+            "Apply levelling compound if required.",
+            "Allow compound to dry fully.",
+            "Tile as normal once surface is flat."
+        ],
+        hints: [
+            "Self‑levelling compound saves time.",
+            "Use a long straight edge to check flatness."
+        ]
+    },
+
+    stone: {
+        name: "Natural Stone Tiles",
+        warnings: [
+            "Stone is porous — sealing is essential.",
+            "Use stone‑safe adhesive and grout.",
+            "Heavy tiles require strong, stable surfaces."
+        ],
+        tools: [
+            "Stone sealer",
+            "Wet saw",
+            "Trowel",
+            "Spacers"
+        ],
+        steps: [
+            "Seal tiles before installation.",
+            "Cut using a wet saw for clean edges.",
+            "Apply adhesive with a deep‑notched trowel.",
+            "Lay tiles carefully and evenly.",
+            "Seal again after grouting."
+        ],
+        hints: [
+            "Stone varies naturally — mix tiles from different boxes.",
+            "Handle carefully to avoid chipping."
+        ]
+    },
+
+    nosuitabletiling: {
+        name: "Not Suitable",
+        warnings: [
+            "This tiling task is not safe or appropriate for DIY.",
+            "Specialist tools or structural work may be required.",
+            "Attempting this may cause damage or risk."
+        ],
+        tools: [],
+        steps: [
+            "Stop here and do not continue.",
+            "Seek a qualified tiler for this task."
+        ],
+        hints: [
+            "Your safety and home integrity come first.",
+            "When unsure, choosing not to proceed is the right call."
+        ]
+    },
+
+    /* ===========================
+       FLOORING
+    ============================ */
+
+    laminate: {
+        name: "Laminate Flooring",
+        warnings: [
+            "Allow laminate to acclimatise for 48 hours.",
+            "Do not install over damp subfloors.",
+            "Leave expansion gaps around all edges."
+        ],
+        tools: [
+            "Underlay",
+            "Spacers",
+            "Jigsaw",
+            "Pull bar",
+            "Rubber mallet"
+        ],
+        steps: [
+            "Lay underlay across the floor.",
+            "Place spacers around the room perimeter.",
+            "Click boards together row by row.",
+            "Cut end boards to fit using a jigsaw.",
+            "Install beading or skirting to cover gaps."
+        ],
+        hints: [
+            "Stagger board joints for strength.",
+            "Use a tapping block to avoid damaging edges."
+        ]
+    },
+
+    vinylsheet: {
+        name: "Vinyl Sheet Flooring",
+        warnings: [
+            "Subfloor must be smooth — imperfections show through.",
+            "Avoid dragging heavy appliances across vinyl.",
+            "Use adhesive only if recommended."
+        ],
+        tools: [
+            "Straight edge",
+            "Knife",
+            "Adhesive (optional)",
+            "Roller"
+        ],
+        steps: [
+            "Roll out vinyl and allow it to relax.",
+            "Trim edges using a straight edge.",
+            "Apply adhesive if required.",
+            "Press vinyl firmly into place.",
+            "Seal edges if recommended."
+        ],
+        hints: [
+            "Warm vinyl is easier to cut.",
+            "Use paper templates for awkward shapes."
+        ]
+    },
+
+    lvtclick: {
+        name: "LVT Click Flooring",
+        warnings: [
+            "Ensure the subfloor is level.",
+            "Leave expansion gaps around edges.",
+            "Do not force boards — they may crack."
+        ],
+        tools: [
+            "Spacers",
+            "Utility knife",
+            "Rubber mallet",
+            "Straight edge"
+        ],
+        steps: [
+            "Lay spacers around the perimeter.",
+            "Click boards together row by row.",
+            "Score and snap boards to cut.",
+            "Install trims or beading to finish."
+        ],
+        hints: [
+            "Mix boards from multiple boxes for colour variation.",
+            "Use a tapping block for tight joints."
+        ]
+    },
+    lvtglue: {
+        name: "LVT Glue‑Down Flooring",
+        warnings: [
+            "Subfloor must be perfectly smooth — imperfections will show.",
+            "Use the correct adhesive and follow open‑time instructions.",
+            "Do not walk on tiles until adhesive has cured."
+        ],
+        tools: [
+            "Adhesive",
+            "Trowel",
+            "Roller",
+            "Utility knife",
+            "Straight edge"
+        ],
+        steps: [
+            "Prepare and smooth the subfloor.",
+            "Spread adhesive evenly with the correct trowel.",
+            "Allow adhesive to reach tack stage.",
+            "Lay tiles carefully and press firmly.",
+            "Roll the floor to ensure full contact."
+        ],
+        hints: [
+            "Work in small sections to control adhesive open time.",
+            "Score and snap tiles for clean cuts."
+        ]
+    },
+
+    carpet: {
+        name: "Carpet Installation",
+        warnings: [
+            "Use gripper rods unless installing loose‑lay carpet.",
+            "Avoid stretching carpet too tightly — it may tear.",
+            "Sharp knives are essential — cut away from your body."
+        ],
+        tools: [
+            "Knee kicker",
+            "Carpet knife",
+            "Gripper rods",
+            "Underlay",
+            "Staple gun (optional)"
+        ],
+        steps: [
+            "Lay underlay and secure edges.",
+            "Install gripper rods around the perimeter.",
+            "Roll out carpet and position it.",
+            "Use a knee kicker to stretch into place.",
+            "Trim edges neatly and tuck into skirting."
+        ],
+        hints: [
+            "Change blades often for clean cuts.",
+            "Let carpet relax in the room before fitting."
+        ]
+    },
+
+    carpettiles: {
+        name: "Carpet Tiles",
+        warnings: [
+            "Ensure the floor is clean and dust‑free.",
+            "Do not mix tiles from different dye batches.",
+            "Avoid installing on damp floors."
+        ],
+        tools: [
+            "Carpet tile adhesive (if required)",
+            "Knife",
+            "Straight edge",
+            "Chalk line"
+        ],
+        steps: [
+            "Mark the centre of the room.",
+            "Lay tiles outward in a grid pattern.",
+            "Cut edge tiles to fit.",
+            "Press tiles firmly into place.",
+            "Replace damaged tiles easily if needed."
+        ],
+        hints: [
+            "Quarter‑turn patterns hide seams.",
+            "Keep spare tiles for future repairs."
+        ]
+    },
+
+    engineered: {
+        name: "Engineered Wood Flooring",
+        warnings: [
+            "Allow boards to acclimatise for 48 hours.",
+            "Leave expansion gaps around all edges.",
+            "Do not install over damp subfloors."
+        ],
+        tools: [
+            "Underlay",
+            "Spacers",
+            "Saw",
+            "Rubber mallet",
+            "Pull bar"
+        ],
+        steps: [
+            "Lay underlay across the floor.",
+            "Place spacers around the perimeter.",
+            "Click boards together row by row.",
+            "Cut end boards to fit.",
+            "Install trims or skirting to finish."
+        ],
+        hints: [
+            "Mix boards from multiple packs for natural variation.",
+            "Use a tapping block to protect board edges."
+        ]
+    },
+
+    solidwood: {
+        name: "Solid Wood Flooring",
+        warnings: [
+            "Solid wood expands — leave generous expansion gaps.",
+            "Do not install in bathrooms or damp areas.",
+            "Subfloor must be perfectly level."
+        ],
+        tools: [
+            "Nail gun or adhesive",
+            "Saw",
+            "Spacers",
+            "Rubber mallet"
+        ],
+        steps: [
+            "Acclimatise boards for at least 72 hours.",
+            "Lay the first row straight and secure it.",
+            "Fit boards tightly using a mallet.",
+            "Cut boards to fit edges.",
+            "Install trims to cover expansion gaps."
+        ],
+        hints: [
+            "Longer boards create a premium look.",
+            "Avoid installing during very humid weather."
+        ]
+    },
+
+    floortiling: {
+        name: "Floor Tiling",
+        warnings: [
+            "Ensure the subfloor is stable and level.",
+            "Use flexible adhesive on timber floors.",
+            "Avoid walking on tiles until adhesive has set."
+        ],
+        tools: [
+            "Tile adhesive",
+            "Notched trowel",
+            "Tile spacers",
+            "Tile cutter",
+            "Rubber mallet"
+        ],
+        steps: [
+            "Dry‑lay tiles to plan your layout.",
+            "Spread adhesive evenly.",
+            "Lay tiles with spacers.",
+            "Tap gently with a mallet to bed them in.",
+            "Allow to dry before grouting."
+        ],
+        hints: [
+            "Start from the centre of the room.",
+            "Use levelling clips for large tiles."
+        ]
+    },
+
+    subfloor: {
+        name: "Subfloor Preparation",
+        warnings: [
+            "Do not install flooring over damp or unstable subfloors.",
+            "Use levelling compound where needed.",
+            "Check for loose boards or damaged areas."
+        ],
+        tools: [
+            "Levelling compound",
+            "Trowel",
+            "Sander",
+            "Vacuum"
+        ],
+        steps: [
+            "Inspect the subfloor for damage.",
+            "Repair loose or damaged areas.",
+            "Apply levelling compound if required.",
+            "Sand high spots and vacuum thoroughly.",
+            "Ensure the surface is clean and dry."
+        ],
+        hints: [
+            "A smooth subfloor improves final results.",
+            "Use a long straight edge to check flatness."
+        ]
+    },
+
+    nosuitableflooring: {
+        name: "Not Suitable",
+        warnings: [
+            "This flooring task is not safe or appropriate for DIY.",
+            "Specialist tools or structural work may be required.",
+            "Attempting this may cause damage or risk."
+        ],
+        tools: [],
+        steps: [
+            "Stop here and do not continue.",
+            "Seek a qualified flooring specialist for this task."
+        ],
+        hints: [
+            "Your safety and home integrity come first.",
+            "When unsure, choosing not to proceed is the right call."
+        ]
+    },
+
+    /* ===========================
+       WOODWORK
+    ============================ */
+
+    studwalls: {
+        name: "Stud Walls & Framing",
+        warnings: [
+            "Check for pipes and cables before fixing.",
+            "Ensure all studs are plumb and level.",
+            "Structural walls require professional assessment."
+        ],
+        tools: [
+            "Timber studs",
+            "Saw",
+            "Drill/driver",
+            "Spirit level",
+            "Screws"
+        ],
+        steps: [
+            "Mark out the wall position on floor and ceiling.",
+            "Fix top and bottom plates securely.",
+            "Install vertical studs at regular intervals.",
+            "Add noggins for strength.",
+            "Board the frame once complete."
+        ],
+        hints: [
+            "Use a laser level for accuracy.",
+            "Pre‑drill timber to prevent splitting."
+        ]
+    },
+
+    joists: {
+        name: "Joists & Structural Timber",
+        warnings: [
+            "Structural work may require building control approval.",
+            "Never cut or notch joists without proper guidance.",
+            "Use correct fixings for load‑bearing work."
+        ],
+        tools: [
+            "Saw",
+            "Joist hangers",
+            "Drill/driver",
+            "Spirit level"
+        ],
+        steps: [
+            "Measure and cut joists accurately.",
+            "Install joist hangers securely.",
+            "Fix joists level and evenly spaced.",
+            "Add noggins for rigidity.",
+            "Check for bounce before boarding."
+        ],
+        hints: [
+            "Use treated timber for longevity.",
+            "Double‑check spans against manufacturer guidance."
+        ]
+    },
+
+    boxing: {
+        name: "Boxing‑In & Frames",
+        warnings: [
+            "Check for pipes and cables before fixing.",
+            "Ensure boxing allows access to valves or joints.",
+            "Avoid sealing in leaks — inspect first."
+        ],
+        tools: [
+            "Timber battens",
+            "Saw",
+            "Drill",
+            "Screws",
+            "Boarding material"
+        ],
+        steps: [
+            "Build a simple timber frame around the area.",
+            "Fix battens securely to walls or floor.",
+            "Attach boards neatly to the frame.",
+            "Fill and finish joints if required."
+        ],
+        hints: [
+            "Use moisture‑resistant boards in bathrooms.",
+            "Magnetic access panels keep things serviceable."
+        ]
+    },
+    featurewalls: {
+        name: "Feature Walls",
+        warnings: [
+            "Check for pipes and cables before fixing battens.",
+            "Heavy cladding requires secure fixings.",
+            "Ensure the wall is flat to avoid gaps."
+        ],
+        tools: [
+            "Timber battens",
+            "Spirit level",
+            "Saw",
+            "Drill/driver",
+            "Fixings"
+        ],
+        steps: [
+            "Mark out your design on the wall.",
+            "Fix battens securely using a level.",
+            "Cut cladding or boards to size.",
+            "Attach boards neatly to the frame.",
+            "Fill, sand, and finish as required."
+        ],
+        hints: [
+            "Use a laser level for perfect alignment.",
+            "Pre‑paint battens for a cleaner finish."
+        ]
+    },
+
+    skirting: {
+        name: "Skirting Boards",
+        warnings: [
+            "Check for pipes and cables before nailing.",
+            "Use adhesive only on sound walls.",
+            "Avoid forcing boards into place — they may split."
+        ],
+        tools: [
+            "Mitre saw",
+            "Adhesive or nails",
+            "Caulk",
+            "Tape measure"
+        ],
+        steps: [
+            "Measure and cut boards with mitred corners.",
+            "Fix using adhesive or nails.",
+            "Fill gaps with caulk.",
+            "Sand lightly and paint if required."
+        ],
+        hints: [
+            "Cope internal corners for a tighter fit.",
+            "Use decorators caulk for seamless joints."
+        ]
+    },
+
+    architrave: {
+        name: "Architrave",
+        warnings: [
+            "Cut mitres accurately for clean joints.",
+            "Avoid nailing too close to edges.",
+            "Check door frames for level before fitting."
+        ],
+        tools: [
+            "Mitre saw",
+            "Nails or adhesive",
+            "Caulk",
+            "Tape measure"
+        ],
+        steps: [
+            "Measure and cut top and side pieces.",
+            "Fix side pieces first.",
+            "Fit the top piece with mitred corners.",
+            "Fill gaps and caulk edges."
+        ],
+        hints: [
+            "Use a mitre box for accuracy.",
+            "Prime bare timber before painting."
+        ]
+    },
+
+    doors: {
+        name: "Doors",
+        warnings: [
+            "Check for pipes and cables before trimming bottoms.",
+            "Do not over‑trim — hollow doors have limits.",
+            "Use correct hinges for door weight."
+        ],
+        tools: [
+            "Plane or saw",
+            "Screwdriver",
+            "Chisel",
+            "Hinges"
+        ],
+        steps: [
+            "Remove the door and check fit.",
+            "Trim edges if required.",
+            "Fit or adjust hinges.",
+            "Rehang and test movement.",
+            "Adjust latch if needed."
+        ],
+        hints: [
+            "Use a sanding block for small adjustments.",
+            "Mark hinge positions carefully before cutting."
+        ]
+    },
+
+    windowboards: {
+        name: "Window Boards / Cills",
+        warnings: [
+            "Check for level before fixing.",
+            "Avoid trapping moisture under boards.",
+            "Use moisture‑resistant boards in damp areas."
+        ],
+        tools: [
+            "Saw",
+            "Adhesive",
+            "Spirit level",
+            "Caulk"
+        ],
+        steps: [
+            "Cut board to size with a slight overhang.",
+            "Apply adhesive to the base.",
+            "Press board into place and level it.",
+            "Caulk edges for a neat finish."
+        ],
+        hints: [
+            "Scribe edges for uneven walls.",
+            "Pre‑paint boards for easier finishing."
+        ]
+    },
+
+    kitchencupboards: {
+        name: "Kitchen Cupboards",
+        warnings: [
+            "Check for pipes and cables before drilling.",
+            "Ensure cabinets are level and securely fixed.",
+            "Heavy wall units require strong fixings."
+        ],
+        tools: [
+            "Drill/driver",
+            "Spirit level",
+            "Screws",
+            "Stud finder"
+        ],
+        steps: [
+            "Mark cabinet positions on the wall.",
+            "Fix brackets or rails securely.",
+            "Hang cabinets and level them.",
+            "Join cabinets together with screws.",
+            "Fit doors and adjust hinges."
+        ],
+        hints: [
+            "Use a laser level for long runs.",
+            "Adjust soft‑close hinges for perfect alignment."
+        ]
+    },
+
+    floorboards: {
+        name: "Floorboards",
+        warnings: [
+            "Check for pipes and cables before lifting boards.",
+            "Use correct screws to avoid squeaks.",
+            "Do not over‑tighten — boards may split."
+        ],
+        tools: [
+            "Pry bar",
+            "Saw",
+            "Screws",
+            "Drill"
+        ],
+        steps: [
+            "Lift damaged boards carefully.",
+            "Cut replacements to size.",
+            "Fix boards securely with screws.",
+            "Sand and finish if required."
+        ],
+        hints: [
+            "Mark board positions before lifting.",
+            "Use tongue‑and‑groove boards for a better fit."
+        ]
+    },
+
+    flooringwoodwork: {
+        name: "Flooring‑Related Woodwork",
+        warnings: [
+            "Check for pipes and cables before trimming.",
+            "Do not cut structural timbers.",
+            "Ensure trims allow for expansion gaps."
+        ],
+        tools: [
+            "Saw",
+            "Nail gun or adhesive",
+            "Tape measure",
+            "Caulk"
+        ],
+        steps: [
+            "Measure and cut trims or thresholds.",
+            "Fix neatly around flooring edges.",
+            "Fill small gaps with caulk.",
+            "Finish with paint or varnish if required."
+        ],
+        hints: [
+            "Use flexible trims for uneven floors.",
+            "Match trim colour to flooring for a seamless look."
+        ]
+    },
+
+    nosuitablewoodwork: {
+        name: "Not Suitable",
+        warnings: [
+            "This woodwork task is not safe or appropriate for DIY.",
+            "Specialist tools or structural work may be required.",
+            "Attempting this may cause damage or risk."
+        ],
+        tools: [],
+        steps: [
+            "Stop here and do not continue.",
+            "Seek a qualified carpenter for this task."
+        ],
+        hints: [
+            "Your safety and home integrity come first.",
+            "When unsure, choosing not to proceed is the right call."
+        ]
+    },
+
+    /* ===========================
+       PLASTERING & WALLS
+    ============================ */
+
+    smallrepairs: {
+        name: "Small Filler Repairs",
+        warnings: [
+            "Do not fill over damp or unstable surfaces.",
+            "Avoid over‑filling — it increases sanding time."
+        ],
+        tools: [
+            "Filler",
+            "Filling knife",
+            "Sandpaper",
+            "Dust brush"
+        ],
+        steps: [
+            "Clean the damaged area.",
+            "Apply filler smoothly with a knife.",
+            "Allow to dry fully.",
+            "Sand flush with the wall.",
+            "Prime if needed before painting."
+        ],
+        hints: [
+            "Feather edges for a seamless finish.",
+            "Use fine filler for hairline cracks."
+        ]
+    },
+
+    mediumrepairs: {
+        name: "Medium Repairs",
+        warnings: [
+            "Do not fill deep holes in one go.",
+            "Ensure surrounding plaster is sound.",
+            "Avoid sanding too aggressively — it may gouge the wall."
+        ],
+        tools: [
+            "Deep‑fill filler",
+            "Filling knife",
+            "Sandpaper",
+            "Primer"
+        ],
+        steps: [
+            "Remove loose material.",
+            "Apply deep‑fill filler in layers.",
+            "Allow each layer to dry.",
+            "Sand smooth once fully dry.",
+            "Prime before painting."
+        ],
+        hints: [
+            "Use a wider knife for smoother results.",
+            "Layering prevents cracking."
+        ]
+    },
+    largerepairs: {
+        name: "Large Repairs",
+        warnings: [
+            "Do not attempt large repairs on unstable or blown plaster.",
+            "Deep holes must be filled in layers to prevent cracking.",
+            "Avoid sanding before filler is fully dry."
+        ],
+        tools: [
+            "Backing plaster or deep‑fill filler",
+            "Plastering trowel",
+            "Hawk",
+            "Sandpaper"
+        ],
+        steps: [
+            "Remove all loose plaster until the edges are firm.",
+            "Apply backing plaster or filler in layers.",
+            "Allow each layer to dry fully.",
+            "Apply a finishing layer and smooth it.",
+            "Sand lightly once dry."
+        ],
+        hints: [
+            "Use a wide trowel for smoother results.",
+            "Mist the area lightly to help adhesion."
+        ]
+    },
+
+    fullskim: {
+        name: "Full Skim Coat",
+        warnings: [
+            "Skimming requires practice — work in small sections.",
+            "Do not skim over damp or unstable surfaces.",
+            "Use proper plastering tools for best results."
+        ],
+        tools: [
+            "Plastering trowel",
+            "Hawk",
+            "Mixing bucket",
+            "Plaster"
+        ],
+        steps: [
+            "Apply a thin, even coat of plaster.",
+            "Work from top to bottom.",
+            "Smooth with long, sweeping strokes.",
+            "Allow to firm up, then trowel again.",
+            "Polish lightly as it sets."
+        ],
+        hints: [
+            "Keep tools clean — dried plaster causes lines.",
+            "Work quickly; plaster has a limited open time."
+        ]
+    },
+
+    plasterboard: {
+        name: "Plasterboard Installation",
+        warnings: [
+            "Check for pipes and cables before fixing boards.",
+            "Use correct fixings for stud or masonry walls.",
+            "Do not leave unsupported edges."
+        ],
+        tools: [
+            "Plasterboard",
+            "Screws",
+            "Drill/driver",
+            "Stanley knife",
+            "Tape measure"
+        ],
+        steps: [
+            "Measure and cut boards to size.",
+            "Fix boards securely to studs or battens.",
+            "Stagger joints for strength.",
+            "Tape and fill seams.",
+            "Sand smooth once dry."
+        ],
+        hints: [
+            "Score and snap boards for clean cuts.",
+            "Use moisture‑resistant boards in bathrooms."
+        ]
+    },
+
+    taping: {
+        name: "Taping & Jointing",
+        warnings: [
+            "Do not apply thick layers — they will crack.",
+            "Ensure screws are slightly recessed before taping.",
+            "Avoid sanding too early."
+        ],
+        tools: [
+            "Joint tape",
+            "Joint compound",
+            "Taping knife",
+            "Sanding block"
+        ],
+        steps: [
+            "Apply compound to the joint.",
+            "Embed tape into the compound.",
+            "Apply a thin coat over the tape.",
+            "Allow to dry and sand lightly.",
+            "Apply a second, wider coat."
+        ],
+        hints: [
+            "Feather edges for a seamless finish.",
+            "Use dust‑free sanding pads for cleaner work."
+        ]
+    },
+
+    dampstain: {
+        name: "Damp & Stain Treatment",
+        warnings: [
+            "Identify and fix the source of damp before decorating.",
+            "Do not paint over active damp — it will return.",
+            "Use stain block to prevent bleed‑through."
+        ],
+        tools: [
+            "Stain block",
+            "Filler",
+            "Brush",
+            "Sandpaper"
+        ],
+        steps: [
+            "Ensure the area is dry and the cause is fixed.",
+            "Treat stains with stain block.",
+            "Fill damaged areas if needed.",
+            "Sand smooth and repaint."
+        ],
+        hints: [
+            "Oil‑based stain blocks are most effective.",
+            "Ventilate the room well during drying."
+        ]
+    },
+
+    removeplaster: {
+        name: "Removing Old Plaster",
+        warnings: [
+            "Wear eye protection and a dust mask.",
+            "Check for pipes and cables before breaking plaster.",
+            "Old plaster may contain sharp debris."
+        ],
+        tools: [
+            "Hammer",
+            "Chisel",
+            "Dust sheets",
+            "Pry bar"
+        ],
+        steps: [
+            "Score the plaster surface.",
+            "Tap gently with a hammer and chisel.",
+            "Remove loose sections carefully.",
+            "Dispose of debris safely.",
+            "Inspect the wall before re‑boarding or skimming."
+        ],
+        hints: [
+            "Work slowly to avoid damaging brickwork.",
+            "Use a vacuum regularly to reduce dust."
+        ]
+    },
+
+    levelling: {
+        name: "Levelling Walls",
+        warnings: [
+            "Do not level over damp or unstable surfaces.",
+            "Use appropriate filler or plaster for depth required.",
+            "Avoid applying thick layers in one go."
+        ],
+        tools: [
+            "Straight edge",
+            "Filler or plaster",
+            "Trowel",
+            "Sanding block"
+        ],
+        steps: [
+            "Identify high and low spots.",
+            "Fill low areas with plaster or filler.",
+            "Allow to dry fully.",
+            "Sand high spots lightly.",
+            "Repeat until the wall is flat."
+        ],
+        hints: [
+            "Use a long straight edge for accuracy.",
+            "Work in sections for better control."
+        ]
+    },
+
+    nosuitableplastering: {
+        name: "Not Suitable",
+        warnings: [
+            "This plastering task is not safe or appropriate for DIY.",
+            "Specialist skills or structural work may be required.",
+            "Attempting this may cause damage or risk."
+        ],
+        tools: [],
+        steps: [
+            "Stop here and do not continue.",
+            "Seek a qualified plasterer for this task."
+        ],
+        hints: [
+            "Your safety and home integrity come first.",
+            "When unsure, choosing not to proceed is the right call."
+        ]
+    },
+
+    /* ===========================
+       PLUMBING
+    ============================ */
+
+    unblock: {
+        name: "Unblocking Sinks, Baths & Basins",
+        warnings: [
+            "Do not use excessive force — pipes may crack.",
+            "Avoid mixing chemical unblockers.",
+            "Check traps for leaks after reassembly."
+        ],
+        tools: [
+            "Plunger",
+            "Bucket",
+            "Rubber gloves",
+            "Drain snake (optional)"
+        ],
+        steps: [
+            "Remove standing water if needed.",
+            "Use a plunger to clear the blockage.",
+            "Check the trap and clean if required.",
+            "Flush with hot water to finish."
+        ],
+        hints: [
+            "A wet cloth over the overflow improves suction.",
+            "Regular cleaning prevents future blockages."
+        ]
+    },
+
+    slowdrains: {
+        name: "Fixing Slow Drains",
+        warnings: [
+            "Avoid chemical unblockers on old pipes.",
+            "Do not overtighten plastic traps.",
+            "Check for leaks after cleaning."
+        ],
+        tools: [
+            "Bucket",
+            "Rubber gloves",
+            "Brush",
+            "Drain cleaner (non‑chemical)"
+        ],
+        steps: [
+            "Remove and clean the trap.",
+            "Flush the pipe with hot water.",
+            "Check for debris in the waste pipe.",
+            "Reassemble and test."
+        ],
+        hints: [
+            "Hair is the most common cause in bathrooms.",
+            "Use a drain brush for deeper cleaning."
+        ]
+    },
+
+    traps: {
+        name: "Leaking Traps & Waste Pipes",
+        warnings: [
+            "Do not overtighten plastic fittings — they can crack.",
+            "Check washers are seated correctly.",
+            "Ensure pipes are aligned before tightening."
+        ],
+        tools: [
+            "Bucket",
+            "Adjustable wrench",
+            "Replacement washers",
+            "PTFE tape"
+        ],
+        steps: [
+            "Place a bucket under the trap.",
+            "Loosen and inspect the joints.",
+            "Replace worn washers.",
+            "Reassemble and test for leaks."
+        ],
+        hints: [
+            "Hand‑tight is usually enough for plastic traps.",
+            "PTFE tape helps seal threaded joints."
+        ]
+    },
+    leakingtaps: {
+        name: "Fixing Leaking Taps",
+        warnings: [
+            "Turn off the water supply before starting.",
+            "Do not overtighten tap components — they can crack.",
+            "Check for worn washers or cartridges."
+        ],
+        tools: [
+            "Adjustable wrench",
+            "Screwdrivers",
+            "Replacement washers/cartridge",
+            "PTFE tape"
+        ],
+        steps: [
+            "Turn off the water supply.",
+            "Remove the tap handle and cover.",
+            "Unscrew the valve and inspect washers.",
+            "Replace worn parts and reassemble.",
+            "Turn water back on and test."
+        ],
+        hints: [
+            "Take old parts to the shop to match replacements.",
+            "PTFE tape helps seal threaded joints."
+        ]
+    },
+
+    replacetaps: {
+        name: "Replacing Taps",
+        warnings: [
+            "Turn off water at the isolation valve or stop tap.",
+            "Use two wrenches to avoid twisting pipes.",
+            "Check for leaks after installation."
+        ],
+        tools: [
+            "Basin wrench",
+            "Adjustable wrench",
+            "PTFE tape",
+            "Bucket"
+        ],
+        steps: [
+            "Turn off the water supply.",
+            "Disconnect supply pipes using a basin wrench.",
+            "Remove old taps and clean the area.",
+            "Fit new taps and reconnect pipes.",
+            "Turn water on and check for leaks."
+        ],
+        hints: [
+            "Wrap PTFE tape clockwise around threads.",
+            "Hand‑tighten first, then finish with a wrench."
+        ]
+    },
+
+    toiletrepairs: {
+        name: "Toilet Repairs",
+        warnings: [
+            "Turn off the water supply before starting.",
+            "Do not overtighten plastic fittings.",
+            "Check seals carefully to avoid leaks."
+        ],
+        tools: [
+            "Screwdrivers",
+            "Adjustable wrench",
+            "Replacement flush valve or fill valve",
+            "Towels"
+        ],
+        steps: [
+            "Turn off the water and flush to empty the cistern.",
+            "Remove the cistern lid and inspect components.",
+            "Replace faulty valves or seals.",
+            "Reassemble and test for leaks."
+        ],
+        hints: [
+            "Most modern toilets use universal replacement kits.",
+            "Clean limescale from seals to improve performance."
+        ]
+    },
+
+    toiletseat: {
+        name: "Toilet Seat Replacement",
+        warnings: [
+            "Avoid overtightening — plastic bolts can snap.",
+            "Check hinge alignment before final tightening."
+        ],
+        tools: [
+            "Screwdriver",
+            "Adjustable wrench",
+            "Replacement seat"
+        ],
+        steps: [
+            "Remove old seat by undoing the bolts.",
+            "Position new seat and insert fixings.",
+            "Tighten bolts evenly.",
+            "Check alignment and adjust if needed."
+        ],
+        hints: [
+            "Top‑fix seats are easier for awkward toilets.",
+            "Use rubber washers to prevent slipping."
+        ]
+    },
+
+    bleeding: {
+        name: "Radiator Bleeding",
+        warnings: [
+            "Ensure the heating is off and radiators are cool.",
+            "Have a cloth ready — water may escape.",
+            "Do not remove the bleed screw completely."
+        ],
+        tools: [
+            "Radiator key",
+            "Cloth",
+            "Container (optional)"
+        ],
+        steps: [
+            "Turn off heating and allow radiators to cool.",
+            "Insert key into the bleed valve.",
+            "Turn slowly until air escapes.",
+            "Close valve when water begins to flow.",
+            "Check boiler pressure afterwards."
+        ],
+        hints: [
+            "Bleed upstairs radiators first.",
+            "Low boiler pressure after bleeding is normal — top up if needed."
+        ]
+    },
+
+    radvalves: {
+        name: "Radiator Valve Replacement",
+        warnings: [
+            "Turn off heating and isolate the radiator.",
+            "Water may spill — protect floors.",
+            "Do not overtighten compression fittings."
+        ],
+        tools: [
+            "Adjustable wrenches",
+            "PTFE tape",
+            "Towels",
+            "Bowl"
+        ],
+        steps: [
+            "Turn off valves and drain the radiator.",
+            "Remove old valve using two wrenches.",
+            "Wrap PTFE tape on threads.",
+            "Fit new valve and tighten gently.",
+            "Refill radiator and bleed air."
+        ],
+        hints: [
+            "Mark valve positions before removal.",
+            "Use plenty of towels — small leaks are normal."
+        ]
+    },
+
+    appliances: {
+        name: "Washing Machines & Dishwashers",
+        warnings: [
+            "Turn off water and power before disconnecting appliances.",
+            "Check hoses for leaks after installation.",
+            "Do not overtighten hose connections."
+        ],
+        tools: [
+            "Adjustable wrench",
+            "Bucket",
+            "Towels"
+        ],
+        steps: [
+            "Turn off water and power.",
+            "Disconnect inlet and waste hoses.",
+            "Move appliance into position.",
+            "Reconnect hoses securely.",
+            "Turn water on and test for leaks."
+        ],
+        hints: [
+            "Use new washers if hoses are old.",
+            "Level the appliance to reduce vibration."
+        ]
+    },
+
+    sealing: {
+        name: "Sealing & Waterproofing",
+        warnings: [
+            "Ensure surfaces are dry before sealing.",
+            "Do not apply sealant to mouldy areas — treat first.",
+            "Avoid overfilling joints."
+        ],
+        tools: [
+            "Silicone sealant",
+            "Caulking gun",
+            "Masking tape",
+            "Smoothing tool"
+        ],
+        steps: [
+            "Clean and dry the area.",
+            "Apply masking tape for clean edges.",
+            "Run a smooth bead of sealant.",
+            "Smooth with a tool or finger.",
+            "Remove tape before sealant skins."
+        ],
+        hints: [
+            "Use bathroom‑grade silicone in wet areas.",
+            "Warm sealant flows more smoothly."
+        ]
+    },
+
+    nosuitableplumbing: {
+        name: "Not Suitable",
+        warnings: [
+            "This plumbing task is not safe or appropriate for DIY.",
+            "Specialist tools or certification may be required.",
+            "Attempting this may cause leaks or water damage."
+        ],
+        tools: [],
+        steps: [
+            "Stop here and do not continue.",
+            "Seek a qualified plumber for this task."
+        ],
+        hints: [
+            "Your safety and home integrity come first.",
+            "When unsure, choosing not to proceed is the right call."
+        ]
+    },
+
+    /* ===========================
+       ELECTRICS
+    ============================ */
+
+    bulbs: {
+        name: "Replacing Light Bulbs",
+        warnings: [
+            "Turn off the light switch before replacing bulbs.",
+            "Allow bulbs to cool before touching.",
+            "Do not force bulbs into fittings."
+        ],
+        tools: [
+            "Replacement bulb",
+            "Step stool (if needed)"
+        ],
+        steps: [
+            "Turn off the light.",
+            "Remove the old bulb carefully.",
+            "Fit the new bulb securely.",
+            "Turn the light back on to test."
+        ],
+        hints: [
+            "Match wattage and fitting type.",
+            "LED bulbs last longer and use less energy."
+        ]
+    },
+
+    lightfittings: {
+        name: "Replacing Light Fittings",
+        warnings: [
+            "Turn off power at the consumer unit.",
+            "Use a voltage tester to confirm power is off.",
+            "Do not mix up live, neutral, and earth wires."
+        ],
+        tools: [
+            "Screwdrivers",
+            "Voltage tester",
+            "Wire strippers"
+        ],
+        steps: [
+            "Turn off power at the consumer unit.",
+            "Remove the old fitting carefully.",
+            "Note wire positions before disconnecting.",
+            "Connect the new fitting securely.",
+            "Restore power and test."
+        ],
+        hints: [
+            "Take a photo of wiring before removal.",
+            "Use proper connectors — never twist wires together."
+        ]
+    },
+    sockets: {
+        name: "Replacing Sockets & Switches",
+        warnings: [
+            "Turn off power at the consumer unit before starting.",
+            "Use a voltage tester to confirm circuits are dead.",
+            "Do not mix up live, neutral, and earth wires.",
+            "Metal faceplates must be earthed."
+        ],
+        tools: [
+            "Screwdrivers",
+            "Voltage tester",
+            "Wire strippers",
+            "Replacement socket or switch"
+        ],
+        steps: [
+            "Turn off power at the consumer unit.",
+            "Remove the old faceplate.",
+            "Take a photo of wiring for reference.",
+            "Disconnect wires and connect to the new unit.",
+            "Fix the faceplate and restore power."
+        ],
+        hints: [
+            "Use proper terminal connectors — never twist wires together.",
+            "If wires are brittle or damaged, they may need professional attention."
+        ]
+    },
+
+    fuse: {
+        name: "Changing Fuses",
+        warnings: [
+            "Turn off the appliance or circuit before replacing a fuse.",
+            "Use the correct fuse rating — never up‑rate a fuse.",
+            "If a fuse blows repeatedly, stop and seek professional help."
+        ],
+        tools: [
+            "Replacement fuse",
+            "Screwdriver (if needed)"
+        ],
+        steps: [
+            "Turn off the appliance or circuit.",
+            "Remove the blown fuse.",
+            "Insert a new fuse of the same rating.",
+            "Test the appliance or circuit."
+        ],
+        hints: [
+            "Most plugs use 3A or 13A fuses.",
+            "A warm or discoloured plug may indicate a fault."
+        ]
+    },
+
+    detectors: {
+        name: "Smoke & CO Detector Maintenance",
+        warnings: [
+            "Replace detectors every 7–10 years depending on model.",
+            "Do not ignore beeping — it indicates low battery or fault.",
+            "Never disable detectors for convenience."
+        ],
+        tools: [
+            "Replacement batteries",
+            "Vacuum (optional)"
+        ],
+        steps: [
+            "Test detectors monthly.",
+            "Replace batteries when low.",
+            "Vacuum vents to remove dust.",
+            "Replace the entire unit if faulty."
+        ],
+        hints: [
+            "Interlinked detectors improve safety.",
+            "Write installation dates on the unit for reference."
+        ]
+    },
+
+    nosuitableelectrics: {
+        name: "Not Suitable",
+        warnings: [
+            "This electrical task is not safe or appropriate for DIY.",
+            "Certification or specialist tools may be required.",
+            "Incorrect wiring can cause fire or electric shock."
+        ],
+        tools: [],
+        steps: [
+            "Stop here and do not continue.",
+            "Seek a qualified electrician for this task."
+        ],
+        hints: [
+            "Your safety comes first.",
+            "If unsure, always choose the safer option."
+        ]
+    },
+
+    /* ===========================
+       AROUND THE HOUSE
+    ============================ */
+
+    shelves: {
+        name: "Putting Up Shelves",
+        warnings: [
+            "Check for pipes and cables before drilling.",
+            "Use correct fixings for your wall type.",
+            "Do not overload shelves."
+        ],
+        tools: [
+            "Drill",
+            "Screws",
+            "Wall plugs",
+            "Spirit level",
+            "Tape measure"
+        ],
+        steps: [
+            "Mark bracket positions on the wall.",
+            "Drill holes and insert wall plugs.",
+            "Fix brackets securely.",
+            "Place shelf on brackets and secure if required."
+        ],
+        hints: [
+            "Use a level to avoid sloping shelves.",
+            "Hollow‑wall fixings are essential for plasterboard."
+        ]
+    },
+
+    pictures: {
+        name: "Hanging Pictures & Mirrors",
+        warnings: [
+            "Check for pipes and cables before drilling.",
+            "Use heavy‑duty fixings for large mirrors.",
+            "Do not rely on adhesive hooks for heavy items."
+        ],
+        tools: [
+            "Drill or hammer",
+            "Wall plugs",
+            "Picture hooks",
+            "Tape measure"
+        ],
+        steps: [
+            "Measure and mark the hanging height.",
+            "Install appropriate fixings.",
+            "Hang the picture or mirror securely.",
+            "Check alignment and adjust if needed."
+        ],
+        hints: [
+            "Use two hooks for wide frames.",
+            "Command strips are great for lightweight items."
+        ]
+    },
+
+    blinds: {
+        name: "Fitting Blinds & Curtains",
+        warnings: [
+            "Check for pipes and cables before drilling.",
+            "Use strong fixings for heavy curtains.",
+            "Ensure brackets are level."
+        ],
+        tools: [
+            "Drill",
+            "Screws",
+            "Wall plugs",
+            "Spirit level"
+        ],
+        steps: [
+            "Measure window width and mark bracket positions.",
+            "Drill holes and insert plugs.",
+            "Fix brackets securely.",
+            "Fit blind or curtain pole and test movement."
+        ],
+        hints: [
+            "Extend poles slightly wider than the window.",
+            "Use a laser level for perfect alignment."
+        ]
+    },
+
+    flatpack: {
+        name: "Flat‑Pack Assembly",
+        warnings: [
+            "Assemble on a soft surface to avoid scratches.",
+            "Do not overtighten screws — they may strip.",
+            "Check all parts before starting."
+        ],
+        tools: [
+            "Screwdrivers",
+            "Allen keys",
+            "Rubber mallet (optional)"
+        ],
+        steps: [
+            "Lay out all parts and hardware.",
+            "Follow instructions step by step.",
+            "Assemble main frame first.",
+            "Tighten all fixings once complete."
+        ],
+        hints: [
+            "Sort screws into piles for easier assembly.",
+            "Work slowly — rushing causes mistakes."
+        ]
+    },
+
+    draughtproofing: {
+        name: "Draught‑Proofing",
+        warnings: [
+            "Do not block ventilation needed for gas appliances.",
+            "Ensure doors and windows still open safely.",
+            "Avoid sealing damp areas — treat first."
+        ],
+        tools: [
+            "Draught excluder",
+            "Weatherstrip",
+            "Scissors",
+            "Screwdriver"
+        ],
+        steps: [
+            "Identify draught sources.",
+            "Fit weatherstrips around doors and windows.",
+            "Install draught excluders where needed.",
+            "Check movement and adjust."
+        ],
+        hints: [
+            "Brush strips work well on uneven floors.",
+            "Self‑adhesive strips are quick and easy."
+        ]
+    },
+    insulation: {
+        name: "Basic Home Insulation",
+        warnings: [
+            "Do not block ventilation needed for boilers or gas appliances.",
+            "Wear gloves and a mask when handling insulation.",
+            "Avoid compressing insulation — it reduces effectiveness."
+        ],
+        tools: [
+            "Insulation rolls or boards",
+            "Staple gun",
+            "Scissors or knife",
+            "Tape measure"
+        ],
+        steps: [
+            "Measure the area to be insulated.",
+            "Cut insulation to size.",
+            "Fit insulation between joists or studs.",
+            "Secure if required and check for gaps."
+        ],
+        hints: [
+            "Loft insulation is one of the easiest DIY energy upgrades.",
+            "Leave space around downlights for safety."
+        ]
+    },
+
+    squeakyfloors: {
+        name: "Fixing Squeaky Floors",
+        warnings: [
+            "Check for pipes and cables before screwing into floors.",
+            "Do not overtighten screws — boards may split.",
+            "Avoid fixing through underfloor heating."
+        ],
+        tools: [
+            "Screws",
+            "Drill",
+            "Wood shims",
+            "Pry bar"
+        ],
+        steps: [
+            "Identify the squeak location.",
+            "Tighten loose boards with screws.",
+            "Insert wood shims under loose joists if needed.",
+            "Test the area and adjust."
+        ],
+        hints: [
+            "Squeaks often come from movement between boards and joists.",
+            "Use flooring screws for a stronger hold."
+        ]
+    },
+
+    nosuitablearound: {
+        name: "Not Suitable",
+        warnings: [
+            "This task is not safe or appropriate for DIY.",
+            "Specialist tools or structural work may be required.",
+            "Attempting this may cause damage or risk."
+        ],
+        tools: [],
+        steps: [
+            "Stop here and do not continue.",
+            "Seek a qualified professional for this task."
+        ],
+        hints: [
+            "Your safety and home integrity come first.",
+            "When unsure, choosing not to proceed is the right call."
+        ]
+    },
+
+    /* ===========================
+       OUTDOORS
+    ============================ */
+
+    decking: {
+        name: "Decking Installation",
+        warnings: [
+            "Check ground levels and drainage before building.",
+            "Use treated timber for outdoor durability.",
+            "Ensure the frame is level and securely fixed."
+        ],
+        tools: [
+            "Saw",
+            "Drill/driver",
+            "Decking boards",
+            "Joists",
+            "Spirit level"
+        ],
+        steps: [
+            "Mark out the decking area.",
+            "Build a strong timber frame.",
+            "Fix joists at regular intervals.",
+            "Lay decking boards with small gaps.",
+            "Secure boards and finish edges."
+        ],
+        hints: [
+            "Use hidden fixings for a cleaner look.",
+            "Apply decking oil to protect the wood."
+        ]
+    },
+
+    fencing: {
+        name: "Fencing Repairs & Installation",
+        warnings: [
+            "Check boundaries before installing new fences.",
+            "Use concrete or strong fixings for posts.",
+            "Wear gloves when handling panels."
+        ],
+        tools: [
+            "Post level",
+            "Concrete mix",
+            "Saw",
+            "Screws",
+            "Drill"
+        ],
+        steps: [
+            "Dig post holes to the correct depth.",
+            "Set posts in concrete and level them.",
+            "Fix panels securely to posts.",
+            "Treat timber for weather protection."
+        ],
+        hints: [
+            "Gravel boards extend fence life.",
+            "Use a string line for straight runs."
+        ]
+    },
+
+    gates: {
+        name: "Gate Installation",
+        warnings: [
+            "Ensure posts are strong enough to support the gate.",
+            "Use heavy‑duty hinges for large gates.",
+            "Check swing clearance before fixing."
+        ],
+        tools: [
+            "Hinges",
+            "Drill",
+            "Screws",
+            "Spirit level"
+        ],
+        steps: [
+            "Fix hinges to the gate first.",
+            "Hold gate in position and mark hinge points.",
+            "Fix hinges to the post.",
+            "Fit latch and test movement."
+        ],
+        hints: [
+            "Use packers under the gate to set height.",
+            "Adjust hinges for smooth operation."
+        ]
+    },
+
+    shed: {
+        name: "Shed Assembly",
+        warnings: [
+            "Build on a level, stable base.",
+            "Wear gloves when handling panels.",
+            "Secure the shed against strong winds."
+        ],
+        tools: [
+            "Screwdriver",
+            "Drill",
+            "Hammer",
+            "Spirit level"
+        ],
+        steps: [
+            "Assemble the base and floor.",
+            "Fix wall panels together.",
+            "Install the roof panels.",
+            "Fit felt or roofing material.",
+            "Secure doors and windows."
+        ],
+        hints: [
+            "Treat timber annually for longevity.",
+            "Use roofing tacks for a secure felt finish."
+        ]
+    },
+
+    guttering: {
+        name: "Gutter Cleaning & Repairs",
+        warnings: [
+            "Use a stable ladder and work safely.",
+            "Do not lean too far — reposition the ladder instead.",
+            "Avoid working in wet or windy conditions."
+        ],
+        tools: [
+            "Ladder",
+            "Gloves",
+            "Bucket",
+            "Hose"
+        ],
+        steps: [
+            "Remove debris from gutters.",
+            "Flush with water to check flow.",
+            "Fix loose brackets.",
+            "Seal small leaks if needed."
+        ],
+        hints: [
+            "Install gutter guards to reduce future cleaning.",
+            "Check downpipes for blockages."
+        ]
+    },
+
+    patios: {
+        name: "Patio Laying",
+        warnings: [
+            "Ensure the ground is level and compacted.",
+            "Use a suitable sub‑base for stability.",
+            "Wear gloves when handling slabs."
+        ],
+        tools: [
+            "Shovel",
+            "Rake",
+            "Compactor",
+            "Spirit level",
+            "Rubber mallet"
+        ],
+        steps: [
+            "Excavate the area to the required depth.",
+            "Lay and compact the sub‑base.",
+            "Spread sand and level it.",
+            "Lay slabs and tap into place.",
+            "Fill joints with sand."
+        ],
+        hints: [
+            "Work from a straight edge for accuracy.",
+            "Use spacers for consistent gaps."
+        ]
+    },
+    paintingexterior: {
+        name: "Exterior Painting",
+        warnings: [
+            "Do not paint in wet, frosty, or very hot conditions.",
+            "Ensure ladders are stable and used safely.",
+            "Exterior surfaces must be clean and sound before painting."
+        ],
+        tools: [
+            "Exterior paint",
+            "Brushes and rollers",
+            "Scraper",
+            "Sandpaper",
+            "Dust sheets"
+        ],
+        steps: [
+            "Clean the surface thoroughly.",
+            "Scrape off loose or flaking paint.",
+            "Sand rough areas smooth.",
+            "Apply primer if required.",
+            "Paint in thin, even coats."
+        ],
+        hints: [
+            "Start at the top and work downwards.",
+            "Use masonry paint for brick or render."
+        ]
+    },
+
+    renderrepair: {
+        name: "Render Repairs",
+        warnings: [
+            "Do not apply render to damp or unstable surfaces.",
+            "Wear gloves and eye protection when mixing mortar.",
+            "Large cracks may indicate structural issues."
+        ],
+        tools: [
+            "Mortar mix",
+            "Trowel",
+            "Bucket",
+            "Brush"
+        ],
+        steps: [
+            "Remove loose render from the area.",
+            "Clean and dampen the surface.",
+            "Apply fresh mortar with a trowel.",
+            "Smooth and blend edges.",
+            "Allow to dry before painting."
+        ],
+        hints: [
+            "Use a stiff brush to texture the surface to match existing render.",
+            "Work in small sections for better control."
+        ]
+    },
+
+    outdoorsealant: {
+        name: "Outdoor Sealant & Weatherproofing",
+        warnings: [
+            "Ensure surfaces are dry before sealing.",
+            "Do not seal over mould — treat first.",
+            "Avoid sealing areas that require ventilation."
+        ],
+        tools: [
+            "Exterior‑grade sealant",
+            "Caulking gun",
+            "Masking tape",
+            "Smoothing tool"
+        ],
+        steps: [
+            "Clean and dry the area.",
+            "Apply masking tape for clean edges.",
+            "Run a smooth bead of sealant.",
+            "Smooth with a tool or finger.",
+            "Remove tape before sealant skins."
+        ],
+        hints: [
+            "Use UV‑resistant sealant outdoors.",
+            "Warm sealant flows more smoothly."
+        ]
+    },
+
+    concreting: {
+        name: "Small Concreting Jobs",
+        warnings: [
+            "Wear gloves when handling cement — it is caustic.",
+            "Do not pour concrete onto unstable ground.",
+            "Avoid working in freezing temperatures."
+        ],
+        tools: [
+            "Cement mix",
+            "Wheelbarrow",
+            "Shovel",
+            "Trowel",
+            "Level"
+        ],
+        steps: [
+            "Prepare and level the ground.",
+            "Mix concrete to the correct consistency.",
+            "Pour into the area and spread evenly.",
+            "Level with a straight edge.",
+            "Allow to cure fully."
+        ],
+        hints: [
+            "Lightly mist concrete in hot weather to prevent cracking.",
+            "Use formwork for clean edges."
+        ]
+    },
+
+    outdoorcleaning: {
+        name: "Outdoor Cleaning & Maintenance",
+        warnings: [
+            "Use pressure washers carefully — they can damage surfaces.",
+            "Avoid using bleach near plants.",
+            "Wear gloves when handling chemicals."
+        ],
+        tools: [
+            "Brush",
+            "Bucket",
+            "Pressure washer (optional)",
+            "Cleaning solution"
+        ],
+        steps: [
+            "Remove loose debris.",
+            "Apply cleaning solution.",
+            "Scrub or pressure wash the area.",
+            "Rinse thoroughly and allow to dry."
+        ],
+        hints: [
+            "Use patio cleaner for stubborn algae.",
+            "Test pressure washers on a small area first."
+        ]
+    },
+
+    artificialgrass: {
+        name: "Artificial Grass",
+        warnings: [
+            "Remove all existing turf and weeds before laying.",
+            "Do not lay directly onto soil without a suitable base.",
+            "Ensure drainage is adequate — poor drainage causes odours."
+        ],
+        tools: [
+            "Spade",
+            "Rake",
+            "Wacker plate or hand compactor",
+            "Stanley knife",
+            "Straight edge",
+            "Brush"
+        ],
+        steps: [
+            "Remove existing grass and excavate to around 75mm depth.",
+            "Lay and compact MOT Type 1 sub‑base.",
+            "Add a layer of sharp sand and compact flat.",
+            "Roll out weed membrane and secure edges.",
+            "Lay the artificial grass and trim to fit using a Stanley knife.",
+            "Secure edges with pins or adhesive edging.",
+            "Brush the pile upright with a stiff brush."
+        ],
+        hints: [
+            "Always lay grass with the pile facing the same direction.",
+            "Use joining tape and adhesive for neat seams.",
+            "Brush regularly to keep it looking natural."
+        ]
+    },
+
+    pointing: {
+        name: "Pointing & Brickwork Repairs",
+        warnings: [
+            "Wear gloves and eye protection when mixing mortar.",
+            "Do not point in freezing temperatures — mortar will fail.",
+            "Large areas of failed pointing may indicate water ingress — investigate first."
+        ],
+        tools: [
+            "Joint raker or cold chisel",
+            "Pointing trowel",
+            "Bucket",
+            "Brush",
+            "Cloths"
+        ],
+        steps: [
+            "Rake out loose or crumbling mortar to a depth of at least 15mm.",
+            "Brush out dust and debris from the joints.",
+            "Dampen the joints with water to prevent the mortar drying too fast.",
+            "Mix mortar to a firm, workable consistency.",
+            "Press mortar firmly into the joints with a pointing trowel.",
+            "Finish joints to match the existing profile.",
+            "Brush off excess once mortar has partially set."
+        ],
+        hints: [
+            "Match the mortar colour to the existing for a neat finish.",
+            "Work in small sections to keep the mortar workable.",
+            "Avoid pointing in direct sun — it dries the mortar too quickly."
+        ]
+    },
+
+    roofrepairs: {
+        name: "Roofing Repairs (Minor Only)",
+        warnings: [
+            "Never work on a wet or icy roof.",
+            "Always use a secured ladder and have someone with you.",
+            "Do not attempt repairs if the roof structure feels soft or unsafe.",
+            "This is for minor repairs only — major roof work requires a professional."
+        ],
+        tools: [
+            "Secured ladder",
+            "Gloves",
+            "Hammer",
+            "Roofing nails",
+            "Replacement tiles or felt",
+            "Sealant"
+        ],
+        steps: [
+            "Identify and safely access the damaged area.",
+            "Lift the surrounding tiles carefully to expose the fixing.",
+            "Remove the damaged tile and check the felt beneath.",
+            "Slide in the replacement tile and nail or clip into place.",
+            "Lower surrounding tiles back and check alignment.",
+            "Apply sealant to any small cracks or gaps as a temporary fix."
+        ],
+        hints: [
+            "Take a broken tile to a builders' merchant to match the type.",
+            "Check the felt for tears while you have access.",
+            "If in doubt, call a professional — roof falls are serious."
+        ]
+    },
+
+    nosuitableoutdoors: {
+        name: "Not Suitable",
+        warnings: [
+            "This outdoor task is not safe or appropriate for DIY.",
+            "Specialist equipment or structural work may be required.",
+            "Attempting this may cause damage or risk."
+        ],
+        tools: [],
+        steps: [
+            "Stop here and do not continue.",
+            "Seek a qualified professional for this task."
+        ],
+        hints: [
+            "Your safety and home integrity come first.",
+            "When unsure, choosing not to proceed is the right call."
+        ]
+    },
+    }; /* END OF howToData */
+
+
+/* ============================================================
+   HOW-TO PAGE LOGIC
+   ============================================================ */
+
+function getTaskFromURL() {
+    const params = new URLSearchParams(window.location.search);
+    return params.get("task");
+}
+
+function renderHowTo(taskKey) {
+    const box = document.getElementById("howToBox");
+
+    if (!taskKey || !howToData[taskKey]) {
+        box.innerHTML = `
+            <strong>Not Found</strong><br><br>
+            The selected task could not be loaded.
+        `;
+        return;
+    }
+
+    const data = howToData[taskKey];
+
+    let html = `<h2>${data.name}</h2>`;
+
+    if (data.warnings && data.warnings.length > 0) {
+        html += `<div class="section-title">Warnings</div><ul>`;
+        data.warnings.forEach(w => html += `<li>${w}</li>`);
+        html += `</ul>`;
+    }
+
+    if (data.tools && data.tools.length > 0) {
+        html += `<div class="section-title">Tools Needed</div><ul>`;
+        data.tools.forEach(t => html += `<li>${t}</li>`);
+        html += `</ul>`;
+    }
+
+    if (data.steps && data.steps.length > 0) {
+        html += `<div class="section-title">Steps</div><ol>`;
+        data.steps.forEach(s => html += `<li>${s}</li>`);
+        html += `</ol>`;
+    }
+
+    if (data.hints && data.hints.length > 0) {
+        html += `<div class="section-title">Hints</div><ul>`;
+        data.hints.forEach(h => html += `<li>${h}</li>`);
+        html += `</ul>`;
+    }
+
+    box.innerHTML = html;
+}
+
+const taskKey = getTaskFromURL();
+renderHowTo(taskKey);
+
+</script>
+
+</body>
+</html>

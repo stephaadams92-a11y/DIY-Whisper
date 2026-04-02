@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wallpapering – What Do I Need?</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffd89b, #6dd5fa);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 30px;
+            font-size: 26px;
+            color: #333;
+        }
+
+        #resultBox {
+            background: rgba(255,255,255,0.85);
+            margin: 20px auto;
+            padding: 15px;
+            width: 80%;
+            max-width: 350px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: left;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .btn {
+            background-color: #ffffff;
+            color: #333;
+            padding: 12px 18px;
+            width: 60%;
+            max-width: 260px;
+            border-radius: 12px;
+            border: none;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        footer {
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #444;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>What Do I Need?</h1>
+
+    <div id="resultBox">
+        Loading…
+    </div>
+
+    <div class="button-container">
+        <button class="btn" id="howToBtn">How To</button>
+        <button class="btn" onclick="location.href='wallpapering.html'">Back</button>
+        <button class="btn" onclick="location.href='notes.html'">Notes</button>
+        <button class="btn" onclick="location.href='menu.html'">Menu</button>
+        <button class="btn" onclick="location.href='index.html'">Home</button>
+    </div>
+
+    <footer>
+        Only continue if you feel confident and capable.
+    </footer>
+
+<script>
+
+/* ============================================================
+   WALLPAPERING DATA — THIS IS THE ONLY SECTION YOU EDIT
+   ============================================================ */
+
+const wallpaperingData = {
+
+    standard: {
+        name: "Standard Wallpaper",
+        list: [
+            "Wallpaper rolls",
+            "Wallpaper paste",
+            "Paste brush or roller",
+            "Wallpaper table",
+            "Seam roller",
+            "Sharp knife & spare blades",
+            "Spirit level or plumb line",
+            "Smoothing brush",
+            "Bucket",
+            "Sponge & cloths",
+            "Dust sheets"
+        ]
+    },
+
+    pastewall: {
+        name: "Paste‑the‑Wall Wallpaper",
+        list: [
+            "Paste‑the‑wall wallpaper",
+            "Ready‑mixed paste",
+            "Roller & tray",
+            "Smoothing tool",
+            "Sharp knife",
+            "Spirit level",
+            "Dust sheets"
+        ]
+    },
+
+    peelstick: {
+        name: "Peel‑and‑Stick Wallpaper",
+        list: [
+            "Peel‑and‑stick rolls",
+            "Smoothing tool",
+            "Sharp knife",
+            "Spirit level",
+            "Cleaning wipes (for walls)",
+            "Cloths"
+        ]
+    },
+
+    feature: {
+        name: "Feature Wall",
+        list: [
+            "Wallpaper rolls (check pattern repeat)",
+            "Paste or adhesive",
+            "Wallpaper table",
+            "Smoothing brush",
+            "Sharp knife",
+            "Spirit level",
+            "Dust sheets"
+        ]
+    },
+
+    borders: {
+        name: "Borders",
+        list: [
+            "Border roll",
+            "Strong border adhesive",
+            "Sponge",
+            "Sharp scissors",
+            "Spirit level",
+            "Cloths"
+        ]
+    },
+
+    ceilings: {
+        name: "Ceilings",
+        list: [
+            "Lightweight wallpaper",
+            "Strong paste",
+            "Wallpaper table",
+            "Roller/brush",
+            "Smoothing brush",
+            "Sharp knife",
+            "Dust sheets"
+        ]
+    },
+
+    overexisting: {
+        name: "Over Existing Wallpaper",
+        list: [
+            "Ready‑mixed paste",
+            "Smoothing brush",
+            "Sharp knife",
+            "Seam roller",
+            "Sugar soap",
+            "Cloths"
+        ]
+    },
+
+    lining: {
+        name: "Lining Paper",
+        list: [
+            "Lining paper",
+            "Paste",
+            "Paste brush",
+            "Smoothing brush",
+            "Sharp knife",
+            "Spirit level",
+            "Dust sheets"
+        ]
+    },
+
+    bareplaster: {
+        name: "Bare Plaster",
+        list: [
+            "Lining paper (recommended)",
+            "Paste",
+            "Sizing solution",
+            "Brush/roller",
+            "Smoothing brush",
+            "Sharp knife",
+            "Dust sheets"
+        ]
+    },
+
+    problems: {
+        name: "Problem Surfaces",
+        list: [
+            "Lining paper",
+            "Ready‑mixed paste",
+            "Filler",
+            "Sanding block",
+            "Sugar soap",
+            "Stain block (if needed)",
+            "Smoothing brush"
+        ]
+    },
+
+    nosuitable: {
+        name: "Not Suitable for Wallpapering",
+        list: [
+            "No materials required — surface must not be wallpapered"
+        ]
+    }
+
+};
+
+/* ============================================================
+   END OF EDITABLE SECTION
+   ============================================================ */
+
+
+/* ===== Logic to read ?task= and display the correct list ===== */
+
+const params = new URLSearchParams(window.location.search);
+const task = params.get("task");
+
+const box = document.getElementById("resultBox");
+const howToBtn = document.getElementById("howToBtn");
+
+if (wallpaperingData[task]) {
+    const item = wallpaperingData[task];
+    let html = `<strong>${item.name}</strong><br><br>`;
+    html += "<ul>";
+    item.list.forEach(i => html += `<li>${i}</li>`);
+    html += "</ul>";
+    box.innerHTML = html;
+
+    howToBtn.onclick = () => {
+        location.href = `howto.html?task=${task}`;
+    };
+
+} else {
+    box.innerHTML = "No information found for this task.";
+    howToBtn.style.display = "none";
+}
+
+</script>
+
+</body>
+</html>

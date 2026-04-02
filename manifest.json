@@ -1,0 +1,23 @@
+{
+  "name": "DIY Whisper",
+  "short_name": "DIY Whisper",
+  "description": "Your calm, confidence‑building guide for everyday DIY tasks",
+  "start_url": "index.html",
+  "display": "standalone",
+  "background_color": "#6dd5fa",
+  "theme_color": "#ffd89b",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

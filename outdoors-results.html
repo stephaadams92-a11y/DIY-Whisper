@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Outdoors – What Do I Need?</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ffd89b, #6dd5fa);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100vh;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 30px;
+            font-size: 26px;
+            color: #333;
+        }
+
+        #resultBox {
+            background: rgba(255,255,255,0.85);
+            margin: 20px auto;
+            padding: 15px;
+            width: 80%;
+            max-width: 350px;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-align: left;
+            font-size: 15px;
+            line-height: 1.4;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            margin-top: 10px;
+        }
+
+        .btn {
+            background-color: #ffffff;
+            color: #333;
+            padding: 12px 18px;
+            width: 60%;
+            max-width: 260px;
+            border-radius: 12px;
+            border: none;
+            font-size: 16px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            cursor: pointer;
+        }
+
+        .btn:active {
+            transform: scale(0.97);
+        }
+
+        footer {
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #444;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>What Do I Need?</h1>
+
+    <div id="resultBox">
+        Loading…
+    </div>
+
+    <div class="button-container">
+        <button class="btn" id="howToBtn">How To</button>
+        <button class="btn" onclick="location.href='outdoors.html'">Back</button>
+        <button class="btn" onclick="location.href='notes.html'">Notes</button>
+        <button class="btn" onclick="location.href='menu.html'">Menu</button>
+        <button class="btn" onclick="location.href='index.html'">Home</button>
+    </div>
+
+    <footer>
+        Only continue if you feel confident and capable.
+    </footer>
+
+<script>
+
+/* ============================================================
+   OUTDOORS DATA — THIS IS THE ONLY SECTION YOU EVER EDIT
+   ============================================================ */
+
+const outdoorsData = {
+
+    decking: {
+        name: "Decking (Full Build)",
+        list: [
+            "Timber posts",
+            "Joists",
+            "Decking boards",
+            "Postcrete",
+            "Joist hangers",
+            "Screws (decking & structural)",
+            "Spirit level",
+            "Drill/driver",
+            "Saw",
+            "Tape measure",
+            "Weed membrane"
+        ]
+    },
+
+    summerhouse: {
+        name: "Summer House / Shed Build",
+        list: [
+            "Timber framing",
+            "Cladding boards",
+            "Roof felt or shingles",
+            "Nails & screws",
+            "Door & window kit",
+            "Spirit level",
+            "Drill/driver",
+            "Saw",
+            "Paint or wood treatment"
+        ]
+    },
+
+    slabbing: {
+        name: "Slabbing / Paving",
+        list: [
+            "MOT Type 1",
+            "Sharp sand",
+            "Cement",
+            "Slabs",
+            "Rake",
+            "Shovel",
+            "Rubber mallet",
+            "Spirit level",
+            "String line"
+        ]
+    },
+
+    concrete: {
+        name: "Concrete Work",
+        list: [
+            "Cement",
+            "Ballast",
+            "Water",
+            "Wheelbarrow",
+            "Shovel",
+            "Trowel",
+            "Straight edge",
+            "Timber formwork"
+        ]
+    },
+
+    artificialgrass: {
+        name: "Artificial Grass",
+        list: [
+            "Artificial grass roll",
+            "Weed membrane",
+            "Sharp sand",
+            "Adhesive or joining tape",
+            "Stanley knife",
+            "Rake",
+            "Brush",
+            "Pins or edging"
+        ]
+    },
+
+    fencing: {
+        name: "Fencing",
+        list: [
+            "Fence panels or featheredge boards",
+            "Posts (timber or concrete)",
+            "Postcrete",
+            "Rails & gravel boards",
+            "Screws or nails",
+            "Spirit level",
+            "Tape measure",
+            "Saw"
+        ]
+    },
+
+    gates: {
+        name: "Gate Builds",
+        list: [
+            "Timber for gate frame",
+            "Cladding boards",
+            "Hinges",
+            "Latch",
+            "Screws",
+            "Spirit level",
+            "Drill/driver",
+            "Saw"
+        ]
+    },
+
+    pointing: {
+        name: "Pointing & Brickwork Repairs",
+        list: [
+            "Mortar mix",
+            "Pointing trowel",
+            "Bucket",
+            "Brush",
+            "Joint raker",
+            "Cloths"
+        ]
+    },
+
+    painting: {
+        name: "Painting Outdoors",
+        list: [
+            "Exterior paint",
+            "Brushes & rollers",
+            "Dust sheets",
+            "Sandpaper",
+            "Cloths",
+            "Masking tape"
+        ]
+    },
+
+    roofrepairs: {
+        name: "Roofing Repairs (Minor Only)",
+        list: [
+            "Replacement tiles",
+            "Roofing nails",
+            "Hammer",
+            "Ladder",
+            "Gloves",
+            "Sealant (for small fixes)"
+        ]
+    },
+
+    gutters: {
+        name: "Gutter Cleaning & Minor Fixes",
+        list: [
+            "Ladder",
+            "Bucket",
+            "Gloves",
+            "Brush",
+            "Replacement clips",
+            "Sealant (optional)"
+        ]
+    },
+
+    nosuitable: {
+        name: "Not Suitable for Outdoors",
+        list: [
+            "No materials required — task must not be attempted"
+        ]
+    }
+
+};
+
+/* ============================================================
+   END OF EDITABLE SECTION
+   ============================================================ */
+
+
+/* ===== Logic to read ?task= and display the correct list ===== */
+
+const params = new URLSearchParams(window.location.search);
+const task = params.get("task");
+
+const box = document.getElementById("resultBox");
+const howToBtn = document.getElementById("howToBtn");
+
+if (outdoorsData[task]) {
+    const item = outdoorsData[task];
+    let html = `<strong>${item.name}</strong><br><br>`;
+    html += "<ul>";
+    item.list.forEach(i => html += `<li>${i}</li>`);
+    html += "</ul>";
+    box.innerHTML = html;
+
+    /* Map outdoors task keys to the correct howto.html keys */
+    const howToKeyMap = {
+        decking:        "decking",
+        summerhouse:    "shed",
+        slabbing:       "patios",
+        concrete:       "concreting",
+        artificialgrass:"artificialgrass",
+        fencing:        "fencing",
+        gates:          "gates",
+        pointing:       "pointing",
+        painting:       "paintingexterior",
+        roofrepairs:    "roofrepairs",
+        gutters:        "guttering",
+        nosuitable:     "nosuitableoutdoors"
+    };
+
+    const howToKey = howToKeyMap[task] || task;
+    howToBtn.onclick = () => {
+        location.href = `howto.html?task=${howToKey}`;
+    };
+
+} else {
+    box.innerHTML = "No information found for this task.";
+    howToBtn.style.display = "none";
+}
+
+</script>
+
+</body>
+</html>
