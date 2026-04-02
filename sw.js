@@ -1,4 +1,4 @@
-const CACHE_NAME = 'diy-whisper-v1';
+const CACHE_NAME = 'diy-whisper-v2';
 const urlsToCache = [
   'index.html',
   'menu.html',
@@ -26,34 +26,33 @@ const urlsToCache = [
   'outdoors-results.html',
   'file-map.js',
   'main.js',
+  'manifest.json',
   'icon-192.png',
   'icon-512.png'
 ];
 
-// Install event – cache all static assets
+// Install event – cache assets and activate immediately
 self.addEventListener('install', event => {
+  self.skipWaiting(); // Forces waiting service worker to become active
   event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(urlsToCache))
+    caches.open(CACHE_NAME).then(cache => cache.addAll(urlsToCache))
   );
 });
 
 // Fetch event – serve from cache, fallback to network
 self.addEventListener('fetch', event => {
   event.respondWith(
-    caches.match(event.request)
-      .then(response => response || fetch(event.request))
+    caches.match(event.request).then(response => response || fetch(event.request))
   );
 });
 
-// Activate event – clean up old caches
+// Activate event – take control of all clients and clean up old caches
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(cacheNames => {
       return Promise.all(
-        cacheNames.filter(name => name !== CACHE_NAME)
-          .map(name => caches.delete(name))
+        cacheNames.filter(name => name !== CACHE_NAME).map(name => caches.delete(name))
       );
-    })
+    }).then(() => self.clients.claim()) // Takes control of all open pages
   );
 });
