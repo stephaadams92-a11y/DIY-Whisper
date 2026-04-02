@@ -131,6 +131,12 @@
         <button class="nav-btn" onclick="location.href='index.html'">Home</button>
         <button class="nav-btn" onclick="location.href='notes.html'">Notes</button>
     </div>
-
+<script>
+  if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.register('sw.js')
+      .then(reg => console.log('SW registered'))
+      .catch(err => console.error('SW failed:', err));
+  }
+</script>
 </body>
 </html>
